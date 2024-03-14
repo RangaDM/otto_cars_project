@@ -1,15 +1,15 @@
 import React from 'react'
-import "../../styles/car-item.css";
+import "../../styles/mainbutton.css";
 
 const Mainsection = () => {
   return (
-    <div className="car__item-info d-flex align-items-center justify-content-between mt-3 mb-4">
-        <button className=" w-50 car__item-btn car__btn-rent">
+    <div className="car__item-info d-flex align-items-center gap-2 justify-content-between m-3">
+        <button className="car__item-btn car__btn-rent w-50">
         <h1 className="text-light m-4">Vehicle Marketplace</h1>
             {/* <Link to={`/cars/${carName}`}>Rent</Link> */}
           </button>
 
-          <button className=" w-50 car__item-btn car__btn-details">
+          <button className="car__item-btn2 car__btn-rent w-50">
           <h1 className="text-light m-4">Rental Service</h1>
             {/* <Link to={`/cars/${carName}`}>Details</Link> */}
           </button>

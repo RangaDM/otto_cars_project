@@ -1,0 +1,33 @@
+
+  .car__item-info span i {
+    color: #f9a826;
+    font-size: 1.1rem;
+  }
+  
+  .car__item-btn {
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+    background: #021F61;
+  }
+
+  .car__item-btn2 {
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+    background: #f9a826;
+  }
+  
+  .car__item-btn a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .car__item-btn a:hover {
+    color: #fff;
+  }
+  .car__btn-details {
+    background: #f9a826;
+    border-radius: 0px 4px 4px 0px;
+  }
