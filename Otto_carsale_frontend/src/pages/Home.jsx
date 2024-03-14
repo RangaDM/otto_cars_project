@@ -31,7 +31,7 @@ const Home = () => {
                 </div>
               </Col>
 
-              <Col md="8" sm="12">
+              <Col md="2" lg="8" className="items-center justify-center lg:flex">
                 {/* <FindCarForm /> */}
                 <Mainsection />
               </Col>
@@ -39,6 +39,7 @@ const Home = () => {
           </Container>
         </div>
       </section>
+
       {/* =========== about section ================ */}
       <AboutSection />
       {/* ========== services section ============ */}
@@ -87,7 +88,7 @@ const Home = () => {
       </section>
 
       {/* =============== blog section =========== */}
-      <section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12" className="mb-5 text-center">
@@ -98,7 +99,7 @@ const Home = () => {
             <BlogList />
           </Row>
         </Container>
-      </section>
+      </section> */}
     </Helmet>
   );
 };

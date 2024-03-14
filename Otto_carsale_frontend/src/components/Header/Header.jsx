@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-
+import logo from "../../assets/all-images/Logo/oriLogo.svg"
 import { Container, Row, Col } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
@@ -15,7 +15,7 @@ const navLinks = [
   },
   {
     path: "/cars",
-    display: "Cars",
+    display: "All Vehicles",
   },
 
   {
@@ -26,6 +26,10 @@ const navLinks = [
     path: "/contact",
     display: "Contact",
   },
+  {
+    path: "#",
+    display: "Rent vehicle",
+  }
 ];
 
 const Header = () => {
@@ -43,7 +47,7 @@ const Header = () => {
               <div className="header__top__left">
                 <span>Need Help?</span>
                 <span className="header__top__help">
-                  <i class="ri-phone-fill"></i> +1-202-555-0149
+                  <i class="ri-phone-fill"></i> +94 77 123 4567
                 </span>
               </div>
             </Col>
@@ -71,10 +75,7 @@ const Header = () => {
               <div className="logo">
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
-                    <i class="ri-car-line"></i>
-                    <span>
-                      Rent Car <br /> Service
-                    </span>
+                    <img src={logo} alt="logo" className=" h-16" />
                   </Link>
                 </h1>
               </div>
@@ -86,8 +87,8 @@ const Header = () => {
                   <i class="ri-earth-line"></i>
                 </span>
                 <div className="header__location-content">
-                  <h4>Bangladesh</h4>
-                  <h6>Sylhet City, Bangladesh</h6>
+                  <h4>Kandy</h4>
+                  <h6>Katugasthota, Guhagoda</h6>
                 </div>
               </div>
             </Col>
