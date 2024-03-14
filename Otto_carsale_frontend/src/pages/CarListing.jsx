@@ -8,7 +8,7 @@ import carData from "../assets/data/carData";
 const CarListing = () => {
   return (
     <Helmet title="Cars">
-      <CommonSection title="Vehicle Listing" />
+      <CommonSection title="All Vehicle Listing" />
 
       <section>
         <Container>
@@ -26,10 +26,12 @@ const CarListing = () => {
                 </select>
               </div>
             </Col>
-
-            {carData.map((item) => (
-              <CarItem item={item} key={item.id} />
-            ))}
+            <section className="flex">
+              <h1>Cars</h1>
+              {carData.map((item) => (
+                <CarItem item={item} key={item.id} />
+              ))}
+            </section>
           </Row>
         </Container>
       </section>
