@@ -17,7 +17,7 @@ const quickLinks = [
   },
 
   {
-    path: "/cars",
+    path: "/vehicles",
     display: "Car Listing",
   },
   {

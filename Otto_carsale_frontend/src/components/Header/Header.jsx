@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import logo from "../../assets/all-images/Logo/oriLogo.svg"
+import React, { useRef, useState } from "react";
+import logo from "../../assets/all-images/Logo/oriLogo.svg";
 import { Container, Row, Col } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import "../../styles/header.css";
@@ -14,10 +14,31 @@ const navLinks = [
     display: "About",
   },
   {
-    path: "/cars",
-    display: "All Vehicles",
+    path: "/vehicles",
+    display: "Vehicles",
+    submenu: [
+      {
+        path: "/vehicles/cars",
+        display: "Cars",
+      },
+      {
+        path: "/vehicles/vans",
+        display: "Vans",
+      },
+      {
+        path: "/vehicles/bikes",
+        display: "Mortor Bikes",
+      },
+      {
+        path: "/vehicles/cabs",
+        display: "Cabs",
+      },
+      {
+        path: "/vehicles/trucks",
+        display: "Trucks",
+      },
+    ],
   },
-
   {
     path: "/blogs",
     display: "Blog",
@@ -29,13 +50,16 @@ const navLinks = [
   {
     path: "#",
     display: "Rent vehicle",
-  }
+  },
 ];
 
 const Header = () => {
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
-  const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
+  const toggleMenu = () => {
+    setIsSubMenuOpen(!isSubMenuOpen);
+  };
 
   return (
     <header className="header">
@@ -125,36 +149,54 @@ const Header = () => {
 
       <div className="main__navbar">
         <Container>
-          <div className="navigation__wrapper d-flex align-items-center justify-content-between">
-            <span className="mobile__menu">
-              <i class="ri-menu-line" onClick={toggleMenu}></i>
-            </span>
-
-            <div className="navigation" ref={menuRef} onClick={toggleMenu}>
-              <div className="menu">
-                {navLinks.map((item, index) => (
-                  <NavLink
-                    to={item.path}
-                    className={(navClass) =>
-                      navClass.isActive ? "nav__active nav__item" : "nav__item"
-                    }
-                    key={index}
-                  >
-                    {item.display}
-                  </NavLink>
-                ))}
-              </div>
+        <div className="navigation__wrapper d-flex align-items-center justify-content-between">
+      <span className="mobile__menu">
+        <i className="ri-menu-line" onClick={toggleMenu}></i>
+      </span>
+      <div className="navigation" ref={menuRef}>
+        <div className="menu">
+          {navLinks.map((item, index) => (
+            <div key={index} className="nav__item-wrapper">
+              {item.submenu ? (
+                <div
+                  className="nav__item"
+                  onClick={toggleMenu}
+                >
+                  <span>{item.display}</span><br/>
+                  {isSubMenuOpen && (
+                    <div className="submenu">
+                      {item.submenu.map((subItem, subIndex) => (
+                        <NavLink key={subIndex} to={subItem.path}>
+                          {subItem.display}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <NavLink
+                  to={item.path}
+                  className={(navClass) =>
+                    navClass.isActive ? 'nav__active nav__item' : 'nav__item'
+                  }
+                >
+                  {item.display}
+                </NavLink>
+              )}
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div className="nav__right">
-              <div className="search__box">
-                <input type="text" placeholder="Search" />
-                <span>
-                  <i class="ri-search-line"></i>
-                </span>
-              </div>
-            </div>
-          </div>
+      <div className="nav__right">
+        <div className="search__box">
+          <input type="text" placeholder="Search" />
+          <span>
+            <i className="ri-search-line"></i>
+          </span>
+        </div>
+      </div>
+    </div>
         </Container>
       </div>
     </header>
