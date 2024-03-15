@@ -32,7 +32,7 @@ const CarRentItem = (props) => {
           </div>
 
           <button className=" w-50 car__item-btn car__btn-rent">
-            <Link to={`/vehicles/${carName}`}>Rent</Link>
+            <Link to={`/rent/${carName}`}>Rent</Link>
           </button>
 
           <button className=" w-50 car__item-btn car__btn-details">

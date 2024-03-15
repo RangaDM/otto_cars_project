@@ -11,6 +11,7 @@ import Contact from "../pages/Contact";
 import Categories from "../pages/Categories";
 import VanListing from "../pages/VanListing";
 import RentListing from "../pages/Rentable_cars";
+import CarRentDetails from "../pages/CarRentDetails";
 
 const Routers = () => {
   return (
@@ -22,6 +23,7 @@ const Routers = () => {
       <Route path="/cars" element={<CarListing />} />
       <Route path="vans" element={<VanListing />} />
       <Route path="/vehicles/:slug" element={<CarDetails />} />
+      <Route path="/rent/:slug" element={<CarRentDetails />} />
       <Route path="/rent" element={<RentListing />} />
       <Route path="/blogs" element={<Blog />} />
       <Route path="/blogs/:slug" element={<BlogDetails />} />
