@@ -8,7 +8,7 @@ import carData from "../assets/data/carData";
 const CarListing = () => {
   return (
     <Helmet title="Cars">
-      <CommonSection title="All Vehicle Listing" />
+      <CommonSection title="Car Listing" />
 
       <section>
         <Container>
@@ -26,30 +26,10 @@ const CarListing = () => {
                 </select>
               </div>
             </Col>
-            <section className="border-y-2 border-slate-200">
-              <Container>
-                <Row>
-                  <Col lg="12" className="mb-3">
-                    <h2 className="font-semibold">Cars</h2>
-                  </Col>
-                  {carData.map((item) => (
-                    <CarItem item={item} key={item.id} />
-                  ))}
-                </Row>
-              </Container>
-            </section>
-            <section className="border-y-2 border-slate-200">
-              <Container>
-                <Row>
-                  <Col lg="12" className="mb-3">
-                    <h2 className="font-semibold">Vans</h2>
-                  </Col>
-                  {carData.map((item) => (
-                    <CarItem item={item} key={item.id} />
-                  ))}
-                </Row>
-              </Container>
-            </section>
+
+            {carData.map((item) => (
+              <CarItem item={item} key={item.id} />
+            ))}
           </Row>
         </Container>
       </section>
