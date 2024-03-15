@@ -1,8 +1,8 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { Container } from "reactstrap";
-import { Link } from "react-router-dom";
 
 import "../../styles/hero-slider.css";
 
@@ -23,23 +23,10 @@ const HeroSlider = () => {
         <Container>
           <div className="slider__content ">
             <h4 className="text-light mb-3">Find Your Dream Vehicle From Here</h4>
-            <h1 className="text-light mb-4">Reserve Now and Get 50% Off</h1>
+            <h1 className="text-light mb-4">Visit us</h1>
 
             <button className="btn reserve__btn mt-4">
-              <Link to="/vehicles">Reserve Now</Link>
-            </button>
-          </div>
-        </Container>
-      </div>
-
-      <div className="slider__item slider__item-02 mt0">
-        <Container>
-          <div className="slider__content ">
-            <h4 className="text-light mb-3">For Rent $70 Per Day</h4>
-            <h1 className="text-light mb-4">Reserve Now and Get 50% Off</h1>
-
-            <button className="btn reserve__btn mt-4">
-              <Link to="/vehicles">Reserve Now</Link>
+              <Link to="/vehicles">View Sale</Link>
             </button>
           </div>
         </Container>
@@ -48,11 +35,37 @@ const HeroSlider = () => {
       <div className="slider__item slider__item-03 mt0">
         <Container>
           <div className="slider__content ">
-            <h4 className="text-light mb-3">For Rent $70 Per Day</h4>
+            <h4 className="text-light mb-3">Find Your Dream Vehicle From Here</h4>
+            <h1 className="text-light mb-4">Visit us</h1>
+
+            <button className="btn reserve__btn mt-4">
+              <Link to="/vehicles">View Sale</Link>
+            </button>
+          </div>
+        </Container>
+      </div>
+
+      <div className="slider__item slider__item-02 mt0">
+        <Container>
+          <div className="slider__content ">
+            <h4 className="text-light mb-3">For Rent RS.2000 Per Day</h4>
             <h1 className="text-light mb-4">Reserve Now and Get 50% Off</h1>
 
             <button className="btn reserve__btn mt-4">
-              <Link to="/vehicles">Reserve Now</Link>
+              <Link to="/rent">Reserve Now</Link>
+            </button>
+          </div>
+        </Container>
+      </div>
+
+      <div className="slider__item slider__item-03 mt0">
+        <Container>
+          <div className="slider__content ">
+            <h4 className="text-light mb-3">For Rent Rs.2000 Per Day</h4>
+            <h1 className="text-light mb-4">Reserve Now and Get 50% Off</h1>
+
+            <button className="btn reserve__btn mt-4">
+              <Link to="/rent">Reserve Now</Link>
             </button>
           </div>
         </Container>

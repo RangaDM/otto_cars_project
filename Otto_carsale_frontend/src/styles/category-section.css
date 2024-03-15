@@ -56,6 +56,16 @@
   margin-bottom: 0.75rem;
 }
 
+.main-section a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  text-decoration: none;
+  color: #fff;
+  justify-content: end;
+  font-size: 0.9rem;
+}
+
 .cate-main h2 {
   font-size: 2.2rem;
   font-weight: 600;

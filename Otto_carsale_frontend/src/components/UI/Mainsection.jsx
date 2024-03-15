@@ -8,9 +8,8 @@ const Mainsection = () => {
           <h1 className="text-light m-1 font-semibold">Vehicle Marketplace</h1>
         </button>
 
-      <button className="car__item-btn2 w-50 h-44">
+      <button className="car__item-btn2 w-50 h-44" onClick={() => window.location.href = "/rent"}>
         <h1 className="text-light m-1 font-semibold">Rental Service</h1>
-        {/* <Link to={`/vehicles/${carName}`}>Details</Link> */}
       </button>
     </div>
   );

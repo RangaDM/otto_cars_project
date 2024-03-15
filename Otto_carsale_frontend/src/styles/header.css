@@ -99,6 +99,41 @@
   color: #fff;
 }
 
+.rent-btn a:hover {
+  color: #fff;
+}
+
+.rent-btn {
+  background: repeating-conic-gradient(from var(--a),#ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff2770 50%);
+  animation: animate 4s linear infinite;
+}
+
+@property --a{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes animate {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
+  }
+}
+
+.rent-btn a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  text-decoration: none;
+  color: #021F61;
+  justify-content: end;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 /* ================ main navbar styles =========== */
 
 .main__navbar {

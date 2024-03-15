@@ -3,7 +3,7 @@ import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import "../../styles/car-item.css";
 
-const CarItem = (props) => {
+const CarRentItem = (props) => {
   const { imgUrl, model, carName, automatic, speed, price } = props.item;
 
   return (
@@ -44,4 +44,4 @@ const CarItem = (props) => {
   );
 };
 
-export default CarItem;
+export default CarRentItem;

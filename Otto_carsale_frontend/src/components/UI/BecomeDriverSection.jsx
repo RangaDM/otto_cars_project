@@ -3,7 +3,7 @@ import "../../styles/become-driver.css";
 import { Container, Row, Col } from "reactstrap";
 
 import saleImg from "../../assets/all-images/sale.png";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 const BecomeDriverSection = () => {
   return (
@@ -24,11 +24,11 @@ const BecomeDriverSection = () => {
               that is looking for vehicles like yours. We will help you to
               connect with them.
             </p>
-            <NavLink to="/contact">
+            <a href="/contact">
               <button className="btn become__driver-btn mt-4">
                 Contact Us
               </button>
-            </NavLink>
+            </a>
           </Col>
         </Row>
       </Container>

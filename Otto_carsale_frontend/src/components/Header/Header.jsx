@@ -18,16 +18,16 @@ const navLinks = [
     display: "All Vehicles",
   },
   {
+    path: "/rent",
+    display: "Rent vehicle",
+  },
+  {
     path: "/blogs",
     display: "Blog",
   },
   {
     path: "/contact",
     display: "Contact",
-  },
-  {
-    path: "#",
-    display: "Rent vehicle",
   },
 ];
 
@@ -70,7 +70,7 @@ const Header = () => {
       <div className="header__middle">
         <Container>
           <Row>
-            <Col lg="4" md="3" sm="4">
+            <Col lg="3" md="3" sm="4">
               <div className="logo">
                 <h1>
                   <Link to="/home" className=" d-flex align-items-center gap-2">
@@ -81,23 +81,23 @@ const Header = () => {
             </Col>
 
             <Col lg="3" md="3" sm="4">
-              <div className="header__location d-flex align-items-center gap-2">
+              <div className="header__location d-flex align-items-center gap-1">
                 <span>
                   <i class="ri-earth-line"></i>
                 </span>
-                <div className="header__location-content">
+                <div className="header__location-content mt-2">
                   <h4>Kandy</h4>
                   <h6>Katugasthota, Guhagoda</h6>
                 </div>
               </div>
             </Col>
 
-            <Col lg="3" md="3" sm="4">
+            <Col lg="2" md="2" sm="4">
               <div className="header__location d-flex align-items-center gap-2">
                 <span>
                   <i class="ri-time-line"></i>
                 </span>
-                <div className="header__location-content">
+                <div className="header__location-content mt-2">
                   <h4>Sunday to Friday</h4>
                   <h6>10am - 7pm</h6>
                 </div>
@@ -106,15 +106,28 @@ const Header = () => {
 
             <Col
               lg="2"
-              md="3"
+              md="2"
               sm="0"
               className=" d-flex align-items-center justify-content-end "
             >
-              <button className="header__btn btn ">
+              <button className="rent-btn btn">
+                <Link to="/rent">
+                <i class="ri-car-line"></i> Rent a vehicle
+                </Link>
+              </button>
+            </Col>
+
+            <Col
+              lg="2"
+              md="2"
+              sm="0"
+              className=" d-flex align-items-center justify-content-end "
+            >
+              <div className="header__btn btn ">
                 <Link to="/contact">
                   <i class="ri-phone-line"></i> Request a call
                 </Link>
-              </button>
+              </div>
             </Col>
           </Row>
         </Container>
