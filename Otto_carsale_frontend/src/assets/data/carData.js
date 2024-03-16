@@ -1,6 +1,6 @@
 // import all images from assets/images directory
-import img01 from "../all-images/cars-img/nissan-offer.png";
-import img02 from "../all-images/cars-img/offer-toyota.png";
+import img01 from "../all-images/cars-img/stefan-rodriguez-2AovfzYV3rc-unsplash.jpg";
+import img02 from "../all-images/cars-img/tyler-clemmensen-wLpTPp2dzsY-unsplash.jpg";
 import img03 from "../all-images/cars-img/bmw-offer.png";
 import img04 from "../all-images/cars-img/nissan-offer.png";
 import img05 from "../all-images/cars-img/offer-toyota.png";
@@ -128,6 +128,22 @@ const carData = [
     carName: "Rolls Royce Colorado",
     imgUrl: img08,
     model: "Model 3",
+    price: 50,
+    speed: "20kmpl",
+    gps: "GPS Navigation",
+    seatType: "Heated seats",
+    automatic: "Automatic",
+    description:
+      " Dolor labore lorem no accusam sit justo sadipscing labore invidunt voluptua, amet duo et gubergren vero gubergren dolor. At diam. Dolor labore lorem no accusam sit justo sadipscing labore invidunt voluptua, amet duo et gubergren vero gubergren dolor. At diam.",
+  },
+
+  {
+    id: 9,
+    brand: "Toyota",
+    rating: 12,
+    carName: "Toyota wigo",
+    imgUrl: img06,
+    model: "Model-2021",
     price: 50,
     speed: "20kmpl",
     gps: "GPS Navigation",

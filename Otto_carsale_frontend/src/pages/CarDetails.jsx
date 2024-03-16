@@ -4,11 +4,16 @@ import carData from "../assets/data/carData";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
+import CarRentItem from "../components/UI/Rent_items";
 
 const CarDetails = () => {
   const { slug } = useParams();
 
   const singleCarItem = carData.find((item) => item.carName === slug);
+  const similarBrandCars = carData.filter(
+    (item) => item.brand === singleCarItem.brand && item.id !== singleCarItem.id
+  );
+  console.log(similarBrandCars);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -26,23 +31,6 @@ const CarDetails = () => {
             <Col lg="6">
               <div className="car__info">
                 <h2 className="section__title">{singleCarItem.carName}</h2>
-
-                <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
-                  <h6 className="rent__price fw-bold fs-4">
-                    ${singleCarItem.price}.00 / Day
-                  </h6>
-
-                  <span className=" d-flex align-items-center gap-2">
-                    <span style={{ color: "#f9a826" }}>
-                      <i class="ri-star-s-fill"></i>
-                      <i class="ri-star-s-fill"></i>
-                      <i class="ri-star-s-fill"></i>
-                      <i class="ri-star-s-fill"></i>
-                      <i class="ri-star-s-fill"></i>
-                    </span>
-                    ({singleCarItem.rating} ratings)
-                  </span>
-                </div>
 
                 <p className="section__description">
                   {singleCarItem.description}
@@ -104,6 +92,26 @@ const CarDetails = () => {
                 </div>
               </div>
             </Col>
+          </Row>
+        </Container>
+      </section>
+      <section>
+        <Container>
+          <Row>
+            <Col lg="12">
+              <div className=" d-flex align-items-center gap-3 mb-5">
+                <span className=" d-flex align-items-center gap-2">
+                  <i class="ri-sort-asc"></i> Suggestions for you
+                </span>
+              </div>
+            </Col>
+            {similarBrandCars.length === 0 ? (
+              <h3>No similar vehicles found</h3>
+            ) : (<h3 className="pb-5">Similer vehicles</h3>
+            )}
+            {similarBrandCars.map((item) => (
+              <CarRentItem item={item} key={item.id} />
+            ))}
           </Row>
         </Container>
       </section>

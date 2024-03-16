@@ -12,12 +12,14 @@ import Categories from "../pages/Categories";
 import VanListing from "../pages/VanListing";
 import RentListing from "../pages/Rentable_cars";
 import CarRentDetails from "../pages/CarRentDetails";
+import Login from "../pages/Login";
 
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/user" element={<Login />} />
       <Route path="/about" element={<About />} />
       <Route path="/vehicles" element={<Categories />} />
       <Route path="/cars" element={<CarListing />} />

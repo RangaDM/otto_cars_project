@@ -19,11 +19,11 @@ const BecomeDriverSection = () => {
               Do you want to sale your car?
             </h2>
             <bbr />
-            <p className="text-white text-justify">
+            <h5 className="text-white text-justify">
               Lets us help you to sell your car. We have a large customer base
               that is looking for vehicles like yours. We will help you to
               connect with them.
-            </p>
+            </h5>
             <a href="/contact">
               <button className="btn become__driver-btn mt-4">
                 Contact Us
