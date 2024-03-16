@@ -4,7 +4,7 @@ import carData from "../assets/data/carData";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
-import CarRentItem from "../components/UI/Rent_items";
+import CarItem from "../components/UI/CarItem";
 
 const CarDetails = () => {
   const { slug } = useParams();
@@ -110,7 +110,7 @@ const CarDetails = () => {
             ) : (<h3 className="pb-5">Similer vehicles</h3>
             )}
             {similarBrandCars.map((item) => (
-              <CarRentItem item={item} key={item.id} />
+              <CarItem item={item} key={item.id} />
             ))}
           </Row>
         </Container>

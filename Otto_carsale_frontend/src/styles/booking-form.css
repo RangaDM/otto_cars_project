@@ -41,3 +41,28 @@
     font-size: 0.8rem;
   }
 }
+
+/* Button styles */
+
+.boo-btn {
+  background: #021f61 !important;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.boo-btn a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  text-decoration: none;
+  color: #fff;
+  justify-content: end;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.boo-btn a:hover {
+  color: #f9a826;
+}

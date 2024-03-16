@@ -5,12 +5,12 @@ import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
 import BookingForm from "../components/UI/BookingForm";
-import PaymentMethod from "../components/UI/PaymentMethod";
 
 const CarRentDetails = () => {
   const { slug } = useParams();
 
   const singleCarItem = carData.find((item) => item.carName === slug);
+  console.log(singleCarItem);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -104,22 +104,31 @@ const CarRentDetails = () => {
                     {singleCarItem.brand}
                   </span>
                 </div>
+                <div
+                  className=" d-flex align-items-center mt-3"
+                  style={{ columnGap: "2.8rem" }}
+                >
+                  <span className=" d-flex align-items-center gap-1 section__description">
+                    <i class="ri-user-line" style={{ color: "#f9a826" }}></i>{" "}
+                    {singleCarItem.members}
+                  </span>
+                </div>
               </div>
             </Col>
 
-            <Col lg="7" className="mt-5">
+            <Col lg="12" className="mt-3 lg:mx-10">
               <div className="booking-info mt-5">
                 <h5 className="mb-4 fw-bold ">Booking Information</h5>
                 <BookingForm />
               </div>
             </Col>
 
-            <Col lg="5" className="mt-5">
+            {/* <Col lg="5" className="mt-5">
               <div className="payment__info mt-5">
                 <h5 className="mb-4 fw-bold ">Payment Information</h5>
                 <PaymentMethod />
               </div>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </section>

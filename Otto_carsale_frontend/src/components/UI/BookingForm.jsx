@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/booking-form.css";
 import { Form, FormGroup } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const BookingForm = () => {
   const submitHandler = (event) => {
@@ -67,6 +68,11 @@ const BookingForm = () => {
           placeholder="Write"
         ></textarea>
       </FormGroup>
+          <button className="boo-btn btn">
+            <Link to="/rent">
+            <i class="ri-check-line"></i>Confirm
+            </Link>
+          </button>
     </Form>
   );
 };
