@@ -44,7 +44,7 @@
 
 /* Button styles */
 
-.boo-btn {
+.book-btn {
   background: #021f61 !important;
   padding: 10px 20px;
   border: none;
@@ -52,7 +52,7 @@
   border-radius: 5px;
 }
 
-.boo-btn a {
+.book-btn a {
   display: flex;
   align-items: center;
   column-gap: 0.4rem;
@@ -63,6 +63,6 @@
   font-weight: 600;
 }
 
-.boo-btn a:hover {
+.book-btn .btn:hover {
   color: #f9a826;
 }

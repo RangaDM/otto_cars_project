@@ -5,17 +5,17 @@ import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
 import axios from "axios";
 
-const VanListing = () => {
+const BikeListing = () => {
 
-  const [vanData , setvanData] = React.useState([]);
+  const [truckData , settruckData] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
       try{
 
         const vehicle = await axios.get('http://localhost:5000/api/v1/vehicles/retrieveAllVehicles');
-        setvanData(vehicle.data.van);
-        console.log(vehicle.data.van);
+        settruckData(vehicle.data.bike);
+        console.log(vehicle.data.bike);
 
       }catch(e){
         console.log(e);
@@ -26,8 +26,8 @@ const VanListing = () => {
 }, []);
 
   return (
-    <Helmet title="Vans">
-      <CommonSection title="Van Listing" />
+    <Helmet title="Bike">
+      <CommonSection title="motorcycle Listing" />
 
       <section>
         <Container>
@@ -46,10 +46,9 @@ const VanListing = () => {
               </div>
             </Col>
 
-            {vanData.map((item) => (
+            {truckData.map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
-            
           </Row>
         </Container>
       </section>
@@ -57,4 +56,4 @@ const VanListing = () => {
   );
 };
 
-export default VanListing;
+export default BikeListing;

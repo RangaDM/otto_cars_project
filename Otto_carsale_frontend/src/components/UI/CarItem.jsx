@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 import "../../styles/car-item.css";
 
 const CarItem = (props) => {
-  const { imgUrl, model, carName, automatic, speed, price } = props.item;
+  const { album, model, brand, fuelType, manufacturedCountry, vehicleId } = props.item;
+
+  const firstAlbumUrl = Array.isArray(album) && album.length > 0 ? album[0] : null;
 
   return (
     <Col lg="4" md="4" sm="6" className="mb-5">
       <div className="car__item">
         <div className="car__img">
-          <img src={imgUrl} alt="" className="w-100" />
+          <img src={firstAlbumUrl.photoURL} alt="" className="w-100" />
         </div>
 
         <div className="car__item-content mt-4">
-          <h4 className="section__title text-center">{carName}</h4>
+          <h4 className="section__title text-center">{brand}</h4>
           {/* <h6 className="rent__price text-center mt-">
             ${price}.00 <span>/ Day</span>
           </h6> */}
@@ -24,10 +26,10 @@ const CarItem = (props) => {
               <i class="ri-car-line"></i> {model}
             </span>
             <span className=" d-flex align-items-center gap-1">
-              <i class="ri-settings-2-line"></i> {automatic}
+              <i class="ri-settings-2-line"></i> {fuelType}
             </span>
             <span className=" d-flex align-items-center gap-1">
-              <i class="ri-timer-flash-line"></i> {speed}
+              <i class="ri-timer-flash-line"></i> {manufacturedCountry}
             </span>
           </div>
 
@@ -36,7 +38,7 @@ const CarItem = (props) => {
           </button>
 
           <button className=" w-50 car__item-btn car__btn-details">
-            <Link to={`/vehicles/${carName}`}>Details</Link>
+            <Link to={`/vehicles/${vehicleId}`}>Details</Link>
           </button>
         </div>
       </div>

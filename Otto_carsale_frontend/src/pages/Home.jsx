@@ -7,15 +7,33 @@ import { Container, Row, Col } from "reactstrap";
 import FindCarForm from "../components/UI/FindCarForm";
 import AboutSection from "../components/UI/AboutSection";
 import ServicesList from "../components/UI/ServicesList";
-import carData from "../assets/data/carData";
 import CarItem from "../components/UI/CarItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
 
 import BlogList from "../components/UI/BlogList";
 import Mainsection from "../components/UI/Mainsection";
+import axios from "axios";
 
 const Home = () => {
+
+  const [carData , setcarData] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try{
+
+        const vehicle = await axios.get('http://localhost:5000/api/v1/vehicles/retrieveAllVehicles');
+        setcarData(vehicle.data.car);
+
+      }catch(e){
+        console.log(e);
+      }
+  }
+  fetchData();
+
+}, []);
+
   return (
     <Helmet title="Home">
       {/* ============= hero section =========== */}

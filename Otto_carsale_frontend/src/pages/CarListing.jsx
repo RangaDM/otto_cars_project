@@ -3,9 +3,27 @@ import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
-import carData from "../assets/data/carData";
+import axios from "axios";
 
 const CarListing = () => {
+
+  const [carData , setcarData] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try{
+
+        const vehicle = await axios.get('http://localhost:5000/api/v1/vehicles/retrieveAllVehicles');
+        setcarData(vehicle.data.car);
+
+      }catch(e){
+        console.log(e);
+      }
+  }
+  fetchData();
+
+}, []);
+
   return (
     <Helmet title="Cars">
       <CommonSection title="Car Listing" />

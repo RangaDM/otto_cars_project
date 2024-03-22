@@ -11,8 +11,11 @@ import Contact from "../pages/Contact";
 import Categories from "../pages/Categories";
 import VanListing from "../pages/VanListing";
 import RentListing from "../pages/Rentable_cars";
+import TruckListing from "../pages/TruckListing";
 import CarRentDetails from "../pages/CarRentDetails";
 import Login from "../pages/Login";
+import UserProfile from "../pages/UserProfile";
+import BikeListing from "../pages/BikeListing";
 
 const Routers = () => {
   return (
@@ -20,10 +23,13 @@ const Routers = () => {
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
       <Route path="/user" element={<Login />} />
+      <Route path="/user-profile" element={<UserProfile />} />
       <Route path="/about" element={<About />} />
       <Route path="/vehicles" element={<Categories />} />
       <Route path="/cars" element={<CarListing />} />
       <Route path="vans" element={<VanListing />} />
+      <Route path="/trucks" element={<TruckListing />} />
+      <Route path="/bikes" element={<BikeListing />} />
       <Route path="/vehicles/:slug" element={<CarDetails />} />
       <Route path="/rent/:slug" element={<CarRentDetails />} />
       <Route path="/rent" element={<RentListing />} />

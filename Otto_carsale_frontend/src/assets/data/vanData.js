@@ -8,6 +8,7 @@ import img06 from "../all-images/cars-img/mercedes-offer.png";
 import img07 from "../all-images/cars-img/toyota-offer-2.png";
 import img08 from "../all-images/cars-img/mercedes-offer.png";
 
+
 const carData = [
   {
     id: 1,
