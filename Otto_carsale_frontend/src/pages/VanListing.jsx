@@ -4,6 +4,7 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
 import axios from "axios";
+import Loading from "../components/UI/Loading";
 
 const VanListing = () => {
 
@@ -24,6 +25,10 @@ const VanListing = () => {
   fetchData();
 
 }, []);
+
+if(vanData.length === 0){
+  return <Loading />;
+}
 
   return (
     <Helmet title="Vans">

@@ -55,6 +55,12 @@ ul {
   font-size: 2rem;
 }
 
+.section__title2 {
+  color: #021F61;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
 .section__subtitle {
   color: #f9a826;
   font-weight: 600;
@@ -63,8 +69,15 @@ ul {
 
 .section__description {
   color: #7c8a97;
+  font-size: 1rem;
+  line-height: 30px;
+}
+
+.section__description2 {
+  color: #7c8a97;
   font-size: 0.9rem;
   line-height: 30px;
+  padding-bottom: 5px;
 }
 
 section {

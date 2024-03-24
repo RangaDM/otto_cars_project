@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 
 const CarDetails = () => {
   const { slug } = useParams();
   const [vanData, setVanData] = useState({});
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const singleCarItem = await axios.get(`http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`);
+        const singleCarItem = await axios.get(
+          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
+        );
         setVanData(singleCarItem.data[0]);
       } catch (error) {
         console.log(error);
@@ -19,13 +21,16 @@ const CarDetails = () => {
     };
     fetchData();
   }, [slug]);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [vanData]);
-  
-  const firstAlbumUrl = Array.isArray(vanData.album) && vanData.album.length > 0 ? vanData.album[0].photoURL : null;
 
+  const firstAlbumUrl =
+    Array.isArray(vanData.album) && vanData.album.length > 0
+      ? vanData.album[0].photoURL
+      : null;
+  console.log(vanData);
   return (
     <Helmet title={vanData.brand}>
       <section>
@@ -37,38 +42,92 @@ const CarDetails = () => {
 
             <Col lg="6">
               <div className="car__info">
-                <h2 className="section__title">{vanData.carName}</h2>
-                <p className="section__description">{vanData.vehicleState}</p>
-
-                <div className="d-flex align-items-center mt-3" style={{ columnGap: "4rem" }}>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-roadster-line" style={{ color: "#f9a826" }}></i> {vanData.model}
+                <h2 className="section__title">
+                  {vanData.brand} - {vanData.model}
+                </h2>
+                <p className="section__description">{vanData.vehicleState}</p>{" "}
+                {/* methenna ennoni vehicle des eka */}
+                <div
+                  className="grid grid-cols-3 align-items-center mt-3"
+                  style={{ columnGap: "4rem" }}
+                >
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-roadster-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.model} Model
                   </span>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-settings-2-line" style={{ color: "#f9a826" }}></i> {vanData.style}
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-calendar-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.manufacturedYear} Year
                   </span>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-timer-flash-line" style={{ color: "#f9a826" }}></i> {vanData.condition}
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    {/* methenna ennoni auto/manuel cn eka */}
+                    <i
+                      className="ri-settings-2-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.style} Style
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-gas-station-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>
+                    {vanData.condition} Condition
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-gas-station-fill"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.fuelType} Fuel
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-paint-fill"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.color} Color
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-building-2-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.brand} Brand
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-map-pin-line"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.manufacturedCountry} Manufactured
+                  </span>
+                  <span className="d-flex align-items-center gap-1 section__description2">
+                    <i
+                      className="ri-user-fill"
+                      style={{ color: "#f9a826" }}
+                    ></i>{" "}
+                    {vanData.seatingCapacity} Seater
                   </span>
                 </div>
-
-                <div className="d-flex align-items-center mt-3" style={{ columnGap: "2.8rem" }}>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-map-pin-line" style={{ color: "#f9a826" }}></i> {vanData.fuelType}
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-wheelchair-line" style={{ color: "#f9a826" }}></i> {vanData.color}
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description">
-                    <i className="ri-building-2-line" style={{ color: "#f9a826" }}></i> {vanData.brand}
-                  </span>
-                </div>
+                <h4 className="section__title2 mt-4">
+                  Price : {vanData.vehiclePrice}
+                </h4>
+                <button className=" w-25 mt-3 car__item-btn car__btn-rent">
+                  <Link to={`/contact`}>Contact</Link>
+                </button>
               </div>
             </Col>
           </Row>
         </Container>
       </section>
-      {/* <section>
+      <section>
         <Container>
           <Row>
             <Col lg="12">
@@ -80,7 +139,7 @@ const CarDetails = () => {
             </Col>
           </Row>
         </Container>
-      </section> */}
+      </section>
     </Helmet>
   );
 };
