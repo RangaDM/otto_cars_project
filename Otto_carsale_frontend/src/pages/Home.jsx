@@ -14,25 +14,24 @@ import Testimonial from "../components/UI/Testimonial";
 import BlogList from "../components/UI/BlogList";
 import Mainsection from "../components/UI/Mainsection";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-
-  const [carData , setcarData] = React.useState([]);
+  const [carData, setcarData] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchData() {
-      try{
-
-        const vehicle = await axios.get('http://localhost:5000/api/v1/vehicles/retrieveAllVehicles');
+      try {
+        const vehicle = await axios.get(
+          "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
+        );
         setcarData(vehicle.data.car);
-
-      }catch(e){
+      } catch (e) {
         console.log(e);
       }
-  }
-  fetchData();
-
-}, []);
+    }
+    fetchData();
+  }, []);
 
   return (
     <Helmet title="Home">
@@ -49,7 +48,11 @@ const Home = () => {
                 </div>
               </Col>
 
-              <Col md="2" lg="8" className="items-center justify-center lg:flex">
+              <Col
+                md="2"
+                lg="8"
+                className="items-center justify-center lg:flex"
+              >
                 {/* <FindCarForm /> */}
                 <Mainsection />
               </Col>
@@ -81,11 +84,21 @@ const Home = () => {
               <h6 className="section__subtitle">Come with</h6>
               <h2 className="section__title">Hot Offers</h2>
             </Col>
-            
-            {carData.slice(0, 6).map((item) => (
+
+            {carData.slice(0, 3).map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
           </Row>
+          {carData.length > 3 && (
+            <Row className="text-center">
+              {/* <a href="#">
+              <h5 className="font-semibold">See more</h5>
+              </a> */}
+              <a href="/cars">
+                <h5 className="font-semibold">See more</h5>
+              </a>
+            </Row>
+          )}
         </Container>
       </section>
       {/* =========== become a driver section ============ */}

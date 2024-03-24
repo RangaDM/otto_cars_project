@@ -36,8 +36,14 @@ h6 {
 }
 
 a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
   text-decoration: none;
-  color: unset;
+  color: #fff;
+  justify-content: center;
+  font-size: 0.9rem;
+  text-underline-offset: unset;
 }
 
 a:hover {

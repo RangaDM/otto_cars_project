@@ -49,7 +49,6 @@ const CarListing = () => {
                 </select>
               </div>
             </Col>
-
             {carData.map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
