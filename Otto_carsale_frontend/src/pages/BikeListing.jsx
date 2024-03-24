@@ -27,7 +27,7 @@ const BikeListing = () => {
 
   return (
     <Helmet title="Bike">
-      <CommonSection title="motorcycle Listing" />
+      <CommonSection title="Motorcycle Listing" />
 
       <section>
         <Container>

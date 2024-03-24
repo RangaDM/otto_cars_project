@@ -1,37 +1,69 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from "reactstrap";
-import OrderCard from '../components/UI/OrderCard';
+import { Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
+import Order from "../components/UI/Order";
 
 const UserProfile = () => {
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
 
-  useEffect(() => {
-    fetchOrders();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const myOrders = await axios.get("###");
+  //       setOrders(myOrders.data);
+  //       console.log(myOrders.data);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
 
-  const fetchOrders = async () => {
-    const response = await fetch('/api/orders'); // Replace with your actual API endpoint
-    const data = await response.json();
-    setOrders(data);
-  };
+  const orders = [
+    {
+      id: 1,
+      name:"Travel to Kandy",
+      model: "Toyota",
+      brand: "Corolla",
+      fuelType: "Petrol",
+      manufacturedCountry: "Japan",
+      vehicleId: 1,
+      status: "pending",
+    },
+    {
+      id: 2,
+      name:"Travel to Galle",
+      model: "Toyota",
+      brand: "Corolla",
+      fuelType: "Petrol",
+      manufacturedCountry: "Japan",
+      vehicleId: 2,
+      status: "pending",
+    },
+    {
+      id: 3,
+      name:"Travel to Anuraadhapura",
+      model: "Toyota",
+      brand: "Corolla",
+      fuelType: "Petrol",
+      manufacturedCountry: "Japan",
+      vehicleId: 3,
+      status: "Completed",
+    },
+  ];
 
   return (
-    <Helmet title="Cars">
-      <CommonSection title="Car Listing" />
+    <Helmet title="User">
+      <CommonSection title="My Orders" />
       <section>
-    <Container>
-      <Row>
-        <Col>
-          <h1>My Orders</h1>
-          {orders.map((order) => (
-            <OrderCard key={order.id} order={order} />
-          ))}
-        </Col>
-      </Row>
-    </Container>
-    </section>
+        <Container>
+          <Row>
+              {orders.map((order) => (
+                <Order key={order.id} order={order} />
+              ))}
+          </Row>
+        </Container>
+      </section>
     </Helmet>
   );
 };
