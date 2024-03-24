@@ -47,15 +47,12 @@ const Footer = () => {
               </h1>
             </div>
             <p className="footer__logo-content">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur, distinctio, itaque reiciendis ab cupiditate harum ex
-              quam veniam, omnis expedita animi quibusdam obcaecati mollitia?
-              Delectus et ad illo recusandae temporibus?
+            Otto Car Sale is a leading online platform for buying and selling cars. We provide a wide range of vehicles and a seamless car buying experience. Browse our car listings, read our blog, and get in touch with us for any inquiries. Start your car shopping journey with Otto Car Sale today!
             </p>
           </Col>
 
           <Col lg="2" md="4" sm="6">
-            <div className="mb-4">
+            <div className="mb-4 ml-4">
               <h5 className="footer__link-title">Quick Links</h5>
               <ListGroup>
                 {quickLinks.map((item, index) => (
@@ -68,7 +65,7 @@ const Footer = () => {
           </Col>
 
           <Col lg="3" md="4" sm="6">
-            <div className="mb-4">
+            <div className="mb-4 ml-4">
               <h5 className="footer__link-title mb-4">Head Office</h5>
               <p className="office__info">katugasthota, Kandy</p>
               <p className="office__info">Phone: +94 77 123 4567</p>

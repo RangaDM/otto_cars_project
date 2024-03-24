@@ -16,6 +16,7 @@ import CarRentDetails from "../pages/CarRentDetails";
 import Login from "../pages/Login";
 import UserProfile from "../pages/UserProfile";
 import BikeListing from "../pages/BikeListing";
+import CabListing from "../pages/CabListing";
 
 const Routers = () => {
   return (
@@ -30,6 +31,7 @@ const Routers = () => {
       <Route path="vans" element={<VanListing />} />
       <Route path="/trucks" element={<TruckListing />} />
       <Route path="/bikes" element={<BikeListing />} />
+      <Route path="/cabs" element={<CabListing />} />
       <Route path="/vehicles/:slug" element={<CarDetails />} />
       <Route path="/rent/:slug" element={<CarRentDetails />} />
       <Route path="/rent" element={<RentListing />} />

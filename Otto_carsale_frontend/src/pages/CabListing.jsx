@@ -6,8 +6,8 @@ import CarItem from "../components/UI/CarItem";
 import axios from "axios";
 import Loading from "../components/UI/Loading";
 
-const VanListing = () => {
-  const [vanData, setvanData] = useState([]);
+const CabListing = () => {
+  const [cabData, setCabData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showEmptyMessage, setShowEmptyMessage] = useState(false);
@@ -17,7 +17,7 @@ const VanListing = () => {
       const response = await axios.get(
         "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
       );
-      setvanData(response.data.van);
+      setCabData(response.data.cab);
       setLoading(false);
     } catch (error) {
       setError("Failed to fetch data. Please try again later.");
@@ -42,7 +42,7 @@ const VanListing = () => {
   }, [fetchData]);
 
   useEffect(() => {
-    if (vanData.length === 0) {
+    if (cabData.length === 0) {
       const timer = setTimeout(() => {
         setShowEmptyMessage(true);
       }, 1000);
@@ -51,7 +51,7 @@ const VanListing = () => {
     } else {
       setShowEmptyMessage(false);
     }
-  }, [vanData]);
+  }, [cabData]);
 
   if (loading) {
     return <Loading />;
@@ -66,8 +66,8 @@ const VanListing = () => {
   }
 
   return (
-    <Helmet title="vans">
-      <CommonSection title="Van Listing" />
+    <Helmet title="Cabs">
+      <CommonSection title="Cab Listing" />
       <section>
         <Container>
           <Row>
@@ -85,11 +85,11 @@ const VanListing = () => {
             </Col>
             {showEmptyMessage && (
               <div className="flex justify-center items-center">
-                <h4 className="font-semibold">No van found.</h4>
+                <h4 className="font-semibold">No Cab found.</h4>
               </div>
             )}
             {!showEmptyMessage &&
-              vanData.map((item) => <CarItem item={item} key={item.id} />)}
+              cabData.map((item) => <CarItem item={item} key={item.id} />)}
           </Row>
         </Container>
       </section>
@@ -97,4 +97,4 @@ const VanListing = () => {
   );
 };
 
-export default VanListing;
+export default CabListing;

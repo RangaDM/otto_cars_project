@@ -10,11 +10,8 @@ import ServicesList from "../components/UI/ServicesList";
 import CarItem from "../components/UI/CarItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
-
-import BlogList from "../components/UI/BlogList";
 import Mainsection from "../components/UI/Mainsection";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [carData, setcarData] = React.useState([]);
