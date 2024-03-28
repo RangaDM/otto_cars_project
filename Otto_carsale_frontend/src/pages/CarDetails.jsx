@@ -89,7 +89,7 @@ const CarDetails = () => {
                 </span>
               </div>
             </Col>
-            {relatedData.map((item) => (
+            {relatedData.slice(0, 3).map((item) => (
               <CarItem item={item} key={item.id} />
             ))}
           </Row>
