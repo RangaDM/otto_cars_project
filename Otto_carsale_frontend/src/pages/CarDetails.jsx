@@ -3,36 +3,51 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
+import CarItem from "../components/UI/CarItem";
 
 const CarDetails = () => {
   const { slug } = useParams();
-  const [vanData, setVanData] = useState({});
+  const [vehicleData, setVehicleData] = useState({});
+  const [relatedData, setRelatedData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const singleCarItem = await axios.get(
-          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
-        );
-        setVanData(singleCarItem.data[0]);
+        const singleCarItem = await axios.get(`http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`);
+        setVehicleData(singleCarItem.data[0]);
       } catch (error) {
         console.log(error);
       }
     };
+
     fetchData();
   }, [slug]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [vanData]);
+    const fetchData = async () => {
+      try {
+        const vehicleDataToSend = {
+          fuelType: vehicleData.fuelType,
+          vehicleType: vehicleData.vehicleType,
+          seatingCapacity: vehicleData.seatingCapacity,
+        };
 
-  const firstAlbumUrl =
-    Array.isArray(vanData.album) && vanData.album.length > 0
-      ? vanData.album[0].photoURL
-      : null;
-  console.log(vanData);
+        const response = await axios.post("http://localhost:5000/api/v1/vehicles/similarVehicles", vehicleDataToSend);
+        setRelatedData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (vehicleData.fuelType && vehicleData.vehicleType && vehicleData.seatingCapacity) {
+      fetchData();
+    }
+  }, [vehicleData]);
+
+  const firstAlbumUrl = vehicleData.album?.[0]?.photoURL;
+
   return (
-    <Helmet title={vanData.brand}>
+    <Helmet title={vehicleData.brand}>
       <section>
         <Container>
           <Row>
@@ -43,83 +58,20 @@ const CarDetails = () => {
             <Col lg="6">
               <div className="car__info">
                 <h2 className="section__title">
-                  {vanData.brand} - {vanData.model}
+                  {vehicleData.brand} - {vehicleData.model}
                 </h2>
-                <p className="section__description">{vanData.vehicleState}</p>{" "}
-                {/* methenna ennoni vehicle des eka */}
-                <div
-                  className="grid grid-cols-3 align-items-center mt-3"
-                  style={{ columnGap: "4rem" }}
-                >
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-roadster-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.model} Model
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-calendar-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.manufacturedYear} Year
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    {/* methenna ennoni auto/manuel cn eka */}
-                    <i
-                      className="ri-settings-2-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.style} Style
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-gas-station-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>
-                    {vanData.condition} Condition
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-gas-station-fill"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.fuelType} Fuel
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-paint-fill"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.color} Color
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-building-2-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.brand} Brand
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-map-pin-line"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.manufacturedCountry} Manufactured
-                  </span>
-                  <span className="d-flex align-items-center gap-1 section__description2">
-                    <i
-                      className="ri-user-fill"
-                      style={{ color: "#f9a826" }}
-                    ></i>{" "}
-                    {vanData.seatingCapacity} Seater
-                  </span>
+                <p className="section__description">
+                  {vehicleData.vehicleState}
+                </p>
+
+                <div className="grid grid-cols-3 align-items-center mt-3" style={{ columnGap: "4rem" }}>
+                  {/* Render vehicle details */}
                 </div>
+
                 <h4 className="section__title2 mt-4">
-                  Price : {vanData.vehiclePrice}
+                  Price : {vehicleData.vehiclePrice}
                 </h4>
-                <button className=" w-25 mt-3 car__item-btn car__btn-rent">
+                <button className="w-25 mt-3 car__item-btn car__btn-rent">
                   <Link to={`/contact`}>Contact</Link>
                 </button>
               </div>
@@ -137,7 +89,9 @@ const CarDetails = () => {
                 </span>
               </div>
             </Col>
-            
+            {relatedData.map((item) => (
+              <CarItem item={item} key={item.id} />
+            ))}
           </Row>
         </Container>
       </section>
