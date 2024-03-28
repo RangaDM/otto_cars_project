@@ -137,6 +137,7 @@ const CarDetails = () => {
                 </span>
               </div>
             </Col>
+            
           </Row>
         </Container>
       </section>
