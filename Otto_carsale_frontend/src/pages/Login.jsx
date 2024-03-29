@@ -4,45 +4,23 @@ import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [regemail, setRegEmail] = useState("");
-  const [regpassword, setRegPassword] = useState("");
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const [registerForm, setRegisterForm] = useState({ name: "", email: "", password: "" });
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-    console.log(name);
+  const handleLoginFormChange = (e) => {
+    setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
   };
 
-  const handleRegEmailChange = (e) => {
-    setRegEmail(e.target.value);
-    console.log(regemail);
-  };
-
-  const handleRegPasswordChange = (e) => {
-    setRegPassword(e.target.value);
-    console.log(regpassword);
-  };
-
-  const handleSignUp = () => {
-    console.log("Name:", name);
-    console.log("Email:", regemail);
-    console.log("Password:");
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    console.log(email);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleRegisterFormChange = (e) => {
+    setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
 
   const handleSignIn = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
+    console.log("Login Form:", loginForm);
+  };
+
+  const handleSignUp = () => {
+    console.log("Register Form:", registerForm);
   };
 
   return (
@@ -53,15 +31,13 @@ const Login = () => {
           <input type="checkbox" id="chk" aria-hidden="true" />
           <div className="login">
             <form className="form">
-              <label htmlFor="chk" aria-hidden="true">
-                Log in
-              </label>
+              <label htmlFor="chk" aria-hidden="true">Log in</label>
               <input
                 className="input"
                 type="Email"
                 name="email"
-                value={email}
-                onChange={handleEmailChange}
+                value={loginForm.email}
+                onChange={handleLoginFormChange}
                 placeholder="Email"
                 required
               />
@@ -69,32 +45,24 @@ const Login = () => {
                 className="input"
                 type="Password"
                 name="password"
-                value={password}
-                onChange={handlePasswordChange}
+                value={loginForm.password}
+                onChange={handleLoginFormChange}
                 placeholder="Password"
                 required
               />
-              <button
-                onClick={() => {
-                  handleSignIn();
-                }}
-              >
-                Log in
-              </button>
+              <button onClick={handleSignIn}>Log in</button>
             </form>
           </div>
 
           <div className="register">
             <form className="form">
-              <label htmlFor="chk" aria-hidden="true">
-                Register
-              </label>
+              <label htmlFor="chk" aria-hidden="true">Register</label>
               <input
                 className="input"
                 type="text"
                 name="name"
-                value={name}
-                onChange={handleNameChange}
+                value={registerForm.name}
+                onChange={handleRegisterFormChange}
                 placeholder="Username"
                 required
               />
@@ -102,8 +70,8 @@ const Login = () => {
                 className="input"
                 type="Email"
                 name="email"
-                value={regemail}
-                onChange={handleRegEmailChange}
+                value={registerForm.email}
+                onChange={handleRegisterFormChange}
                 placeholder="Email"
                 required
               />
@@ -111,18 +79,12 @@ const Login = () => {
                 className="input"
                 type="Password"
                 name="password"
-                value={regpassword}
-                onChange={handleRegPasswordChange}
+                value={registerForm.password}
+                onChange={handleRegisterFormChange}
                 placeholder="Password"
                 required
               />
-              <button
-                onClick={() => {
-                  handleSignUp();
-                }}
-              >
-                Register
-              </button>
+              <button onClick={handleSignUp}>Register</button>
             </form>
           </div>
         </div>
