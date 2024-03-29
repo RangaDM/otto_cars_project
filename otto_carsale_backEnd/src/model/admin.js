@@ -8,10 +8,8 @@ require('dotenv').config();
 
 const SECRET_KEY = process.env.SECRET_KEY
 
-
 function validatePassword(value) {
-   
- 
+
   return  validator.isStrongPassword(value, {
     minLength: 8,
     minLowercase: 1,
@@ -87,7 +85,7 @@ AdminSchema.statics.findByCredentials = async (email, password) => {
 
   console.log(admin)
   console.log(password)
-  console.log(admin.password)   
+  console.log(admin.password)
 
   if (!admin) {
     throw new Error('Unable to login. User not found.');

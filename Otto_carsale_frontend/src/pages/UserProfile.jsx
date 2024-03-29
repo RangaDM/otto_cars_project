@@ -4,6 +4,10 @@ import CommonSection from "../components/UI/CommonSection";
 import Order from "../components/UI/Order";
 
 const UserProfile = () => {
+
+  // const userID = localStorage.getItem("userID");
+  // console.log("User ID from pro:", userID);
+
   // const [orders, setOrders] = useState([]);
 
   // useEffect(() => {

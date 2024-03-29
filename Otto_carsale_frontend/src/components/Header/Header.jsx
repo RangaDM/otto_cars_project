@@ -35,6 +35,8 @@ const Header = () => {
   const menuRef = useRef(null);
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
+  const userID = localStorage.getItem("userID");
+  const linkPath = userID ? "/user-profile" : "/user";
 
   return (
     <header className="header">
@@ -57,8 +59,8 @@ const Header = () => {
                   <i class="ri-login-circle-line"></i> Login
                 </Link> */}
 
-                <Link to="/user" className=" d-flex align-items-center gap-1">
-                  <i class="ri-user-line"></i> Profile
+                <Link to={linkPath} className="d-flex align-items-center gap-1">
+                  <i className="ri-user-line"></i> Profile
                 </Link>
               </div>
             </Col>
@@ -112,7 +114,7 @@ const Header = () => {
             >
               <button className="rent-btn btn">
                 <Link to="/rent">
-                <i class="ri-car-line"></i> Rent a vehicle
+                  <i class="ri-car-line"></i> Rent a vehicle
                 </Link>
               </button>
             </Col>
