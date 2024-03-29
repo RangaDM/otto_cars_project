@@ -1,0 +1,34 @@
+.order__item-info span i {
+    color: #f9a826;
+    font-size: 1.1rem;
+  }
+
+  .topics__title2 {
+    color: #021F61;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+  
+  @media only screen and (max-width: 992px) {
+  
+    .order__item-info {
+      flex-wrap: wrap;
+    }
+  
+    .order__item-info span {
+      font-size: 0.8rem;
+      justify-content: baseline;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+
+    .order__item-info span {
+      font-size: 0.7rem;
+    }
+  
+    .order__item-info span i {
+      font-size: 0.9rem;
+    }
+  }
+  
