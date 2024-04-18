@@ -11,7 +11,7 @@ const BecomeDriverSection = () => {
       <Container>
         <Row>
           <Col lg="6" md="6" sm="12" className="become__driver-img">
-            <img src={saleImg} alt="" className="w-50" />
+            <img src={saleImg} alt="" />
           </Col>
 
           <Col lg="6" md="6" sm="12">
@@ -25,7 +25,7 @@ const BecomeDriverSection = () => {
               connect with them.
             </h5>
             <a href="/contact">
-              <button className="btn become__driver-btn mt-4">
+              <button className="btn mt-4">
                 Contact Us
               </button>
             </a>

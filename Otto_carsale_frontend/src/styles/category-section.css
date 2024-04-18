@@ -21,13 +21,13 @@
 }
 
 .cate {
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  border-radius: 7px;
+  border-radius: 20px;
 }
 
 .cate-sub{

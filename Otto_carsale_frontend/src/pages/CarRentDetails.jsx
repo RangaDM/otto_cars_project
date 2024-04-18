@@ -31,10 +31,10 @@ const CarRentDetails = () => {
 
                 <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
                   <h6 className="rent__price fw-bold fs-4">
-                    ${singleCarItem.price}.00 / Day
+                    Rs:{singleCarItem.price}.00 / Day
                   </h6>
 
-                  <span className=" d-flex align-items-center gap-2">
+                  {/* <span className=" d-flex align-items-center gap-2">
                     <span style={{ color: "#f9a826" }}>
                       <i class="ri-star-s-fill"></i>
                       <i class="ri-star-s-fill"></i>
@@ -43,7 +43,7 @@ const CarRentDetails = () => {
                       <i class="ri-star-s-fill"></i>
                     </span>
                     ({singleCarItem.rating} ratings)
-                  </span>
+                  </span> */}
                 </div>
 
                 <p className="section__description">

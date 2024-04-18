@@ -89,7 +89,7 @@ const BikeListing = () => {
               </div>
             )}
             {!showEmptyMessage &&
-              bikeData.map((item) => <CarItem item={item} key={item.id} />)}
+              bikeData.map((item, index) => <CarItem item={item} key={index} />)}
           </Row>
         </Container>
       </section>

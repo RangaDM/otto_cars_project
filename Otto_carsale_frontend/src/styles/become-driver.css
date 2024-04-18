@@ -12,6 +12,10 @@
   color: #021F61;
   font-weight: 600;
 }
+.become__driver-btn a {
+  text-decoration: none;
+  color: #fff;
+}
 
 .become__driver-title {
   font-size: 2.8rem;

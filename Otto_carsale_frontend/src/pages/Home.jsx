@@ -12,6 +12,7 @@ import BecomeDriverSection from "../components/UI/BecomeDriverSection";
 import Testimonial from "../components/UI/Testimonial";
 import Mainsection from "../components/UI/Mainsection";
 import axios from "axios";
+import FinanceCal from "../components/UI/FinanceCal";
 
 const Home = () => {
   const [carData, setcarData] = React.useState([]);
@@ -98,8 +99,23 @@ const Home = () => {
           )}
         </Container>
       </section>
+
       {/* =========== become a driver section ============ */}
       <BecomeDriverSection />
+
+      {/* =========== Finance cal ============ */}
+      <div className="fina">
+        <Container>
+          <Row>
+            <Col lg="12" className="mb-4 text-center">
+              <h6 className="section__subtitle">Calculate your monthly finance payments</h6>
+              <h2 className="section__title">Finance Calculator</h2>
+            </Col>
+
+            <FinanceCal />
+          </Row>
+        </Container>
+      </div>
 
       {/* =========== testimonial section =========== */}
       <section>

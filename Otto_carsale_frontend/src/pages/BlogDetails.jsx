@@ -55,12 +55,11 @@ const BlogDetails = () => {
                 <div className="single__comment d-flex gap-3">
                   <img src={commentImg} alt="" />
                   <div className="comment__content">
-                    <h6 className=" fw-bold">David Visa</h6>
-                    <p className="section__description mb-0">14 July, 2022</p>
+                    <h6 className=" fw-bold">Sandun Lakshan</h6>
+                    <p className="section__description mb-0">14 Jan, 2024</p>
                     <p className="section__description">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Eos nobis totam eius laborum molestias itaque minima
-                      distinctio, quae velit tempore!
+                      Thank you for sharing this valuable information. It's
+                      really helpful for me.
                     </p>
 
                     <span className="replay d-flex align-items-center gap-1">

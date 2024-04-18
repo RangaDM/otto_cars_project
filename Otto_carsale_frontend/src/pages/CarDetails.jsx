@@ -89,8 +89,8 @@ const CarDetails = () => {
                 </span>
               </div>
             </Col>
-            {relatedData.slice(0, 3).map((item) => (
-              <CarItem item={item} key={item.id} />
+            {relatedData.slice(0, 3).map((item, index) => (
+              <CarItem item={item} key={index} />
             ))}
           </Row>
         </Container>
