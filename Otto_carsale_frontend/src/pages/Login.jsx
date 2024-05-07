@@ -34,14 +34,13 @@ const Login = () => {
   const handleSignIn = async () => {
     try {
       const data = { email: loginForm.email, password: loginForm.password };
-      const response = await axios.post("http://localhost:5000/api/v1/customer/login", data);
+      const response = await axios.post("http://localhost:5000/api/v1/user/login", data);
       // console.log("Login Response:", response);
       // console.log("id:", response.data.customer._id);
       // console.log("Login status:", response.status);
       if (response.status === 200) {
-        // console.log("Login Success");
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userID", response.data.customer._id);
+        localStorage.setItem("userID", response.data.user._id);
         window.location.href = "/user-profile";
       }
     } catch (error) {

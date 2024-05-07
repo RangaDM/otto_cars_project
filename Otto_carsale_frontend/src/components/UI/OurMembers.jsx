@@ -2,14 +2,15 @@ import React from "react";
 import "../../styles/our-member.css";
 import { Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import ava01 from "../../assets/all-images/ava-1.jpg";
-import ava02 from "../../assets/all-images/ava-2.jpg";
-import ava03 from "../../assets/all-images/ava-3.jpg";
+import ava01 from "../../assets/all-images/ava-1.png";
+import ava02 from "../../assets/all-images/ava-2.png";
+import ava03 from "../../assets/all-images/ava-3.png";
+import ava04 from "../../assets/all-images/ava-4.png";
 
 const OUR__MEMBERS = [
   {
-    name: "Jhon Doe",
-    experience: "5 years of experience",
+    name: "Nadun Hasaranga",
+    position: "Founder",
     fbUrl: "#",
     instUrl: "#",
     twitUrl: "#",
@@ -18,18 +19,8 @@ const OUR__MEMBERS = [
   },
 
   {
-    name: "David Lisa",
-    experience: "5 years of experience",
-    fbUrl: "#",
-    instUrl: "#",
-    twitUrl: "#",
-    linkedinUrl: "#",
-    imgUrl: ava02,
-  },
-
-  {
-    name: "Hilton King",
-    experience: "5 years of experience",
+    name: "Kashayapa Herath",
+    position: "Co-founder",
     fbUrl: "#",
     instUrl: "#",
     twitUrl: "#",
@@ -38,13 +29,23 @@ const OUR__MEMBERS = [
   },
 
   {
-    name: "Jhon Doe",
-    experience: "5 years of experience",
+    name: "Vindya Lenawala",
+    position: "Co-founder",
     fbUrl: "#",
     instUrl: "#",
     twitUrl: "#",
     linkedinUrl: "#",
-    imgUrl: ava01,
+    imgUrl: ava02,
+  },
+
+  {
+    name: "Nadasara Hewage",
+    position: "Driver",
+    fbUrl: "#",
+    instUrl: "#",
+    twitUrl: "#",
+    linkedinUrl: "#",
+    imgUrl: ava04,
   },
 ];
 
@@ -77,7 +78,7 @@ const OurMembers = () => {
 
             <h6 className="text-center mb-0 mt-3">{item.name}</h6>
             <p className="section__description text-center">
-              {item.experience}
+              {item.position}
             </p>
           </div>
         </Col>
