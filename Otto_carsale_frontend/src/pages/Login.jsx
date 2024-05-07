@@ -1,43 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/login.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import axios from "axios";
 
 const Login = () => {
-  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
-  const [registerForm, setRegisterForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({
+    login: { email: "", password: "" },
+    register: { name: "", email: "", password: "" },
+  });
   const [loginError, setLoginError] = useState("");
-  const [showError, setShowError] = useState(false);
 
-  useEffect(() => {
-    let timer;
-    if (loginError) {
-      setShowError(true);
-      timer = setTimeout(() => {
-        setShowError(false);
-      }, 3000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [loginError]);
-
-  const handleLoginFormChange = (e) => {
-    setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
-  };
-
-  const handleRegisterFormChange = (e) => {
-    setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
+  const handleFormChange = (e, formType) => {
+    setForm({
+      ...form,
+      [formType]: { ...form[formType], [e.target.name]: e.target.value },
+    });
   };
 
   const handleSignIn = async () => {
     try {
-      const data = { email: loginForm.email, password: loginForm.password };
-      const response = await axios.post("http://localhost:5000/api/v1/user/login", data);
-      // console.log("Login Response:", response);
-      // console.log("id:", response.data.customer._id);
-      // console.log("Login status:", response.status);
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/user/login",
+        form.login
+      );
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userID", response.data.user._id);
@@ -50,7 +36,11 @@ const Login = () => {
   };
 
   const handleSignUp = () => {
-    console.log("Register Form:", registerForm);
+    if (Object.values(form.register).some((value) => value === "")) {
+      setLoginError("Please fill all the fields");
+      return;
+    }
+    console.log("Register Form:", form.register);
   };
 
   return (
@@ -61,14 +51,20 @@ const Login = () => {
           <input type="checkbox" id="chk" aria-hidden="true" />
           <div className="login">
             <form className="form">
-              <label htmlFor="chk" aria-hidden="true">Log in</label>
-              {showError && <p className="error" style={{ color:"red" , padding:"0"}}>{loginError}</p>}
+              <label htmlFor="chk" aria-hidden="true">
+                Log in
+              </label>
+              {loginError && (
+                <p className="error" style={{ color: "red", padding: "0" }}>
+                  {loginError}
+                </p>
+              )}
               <input
                 className="input"
                 type="Email"
                 name="email"
-                value={loginForm.email}
-                onChange={handleLoginFormChange}
+                value={form.login.email}
+                onChange={(e) => handleFormChange(e, "login")}
                 placeholder="Email"
                 required
               />
@@ -76,25 +72,31 @@ const Login = () => {
                 className="input"
                 type="Password"
                 name="password"
-                value={loginForm.password}
-                onChange={handleLoginFormChange}
+                value={form.login.password}
+                onChange={(e) => handleFormChange(e, "login")}
                 placeholder="Password"
                 required
               />
-              <button type="button" onClick={handleSignIn}>Log in</button>
-              <p style={{ color:"white" , margin:"0"}}><a href="#">Do you forgot password?</a></p>
+              <button type="button" onClick={handleSignIn}>
+                Log in
+              </button>
+              <p style={{ color: "white", margin: "0" }}>
+                <a href="#">Do you forgot password?</a>
+              </p>
             </form>
           </div>
 
           <div className="register">
             <form className="form">
-              <label htmlFor="chk" aria-hidden="true">Register</label>
+              <label htmlFor="chk" aria-hidden="true">
+                Register
+              </label>
               <input
                 className="input"
                 type="text"
                 name="name"
-                value={registerForm.name}
-                onChange={handleRegisterFormChange}
+                value={form.register.name}
+                onChange={(e) => handleFormChange(e, "register")}
                 placeholder="Username"
                 required
               />
@@ -102,8 +104,8 @@ const Login = () => {
                 className="input"
                 type="Email"
                 name="email"
-                value={registerForm.email}
-                onChange={handleRegisterFormChange}
+                value={form.register.email}
+                onChange={(e) => handleFormChange(e, "register")}
                 placeholder="Email"
                 required
               />
@@ -111,12 +113,14 @@ const Login = () => {
                 className="input"
                 type="Password"
                 name="password"
-                value={registerForm.password}
-                onChange={handleRegisterFormChange}
+                value={form.register.password}
+                onChange={(e) => handleFormChange(e, "register")}
                 placeholder="Password"
                 required
               />
-              <button type="button" onClick={handleSignUp}>Register</button>
+              <button type="button" onClick={handleSignUp}>
+                Register
+              </button>
             </form>
           </div>
         </div>
