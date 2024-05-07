@@ -13,8 +13,11 @@ const CarDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const singleCarItem = await axios.get(`http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`);
+        const singleCarItem = await axios.get(
+          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
+        );
         setVehicleData(singleCarItem.data[0]);
+        console.log(singleCarItem.data[0]);
       } catch (error) {
         console.log(error);
       }
@@ -32,14 +35,21 @@ const CarDetails = () => {
           seatingCapacity: vehicleData.seatingCapacity,
         };
 
-        const response = await axios.post("http://localhost:5000/api/v1/vehicles/similarVehicles", vehicleDataToSend);
+        const response = await axios.post(
+          "http://localhost:5000/api/v1/vehicles/similarVehicles",
+          vehicleDataToSend
+        );
         setRelatedData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    if (vehicleData.fuelType && vehicleData.vehicleType && vehicleData.seatingCapacity) {
+    if (
+      vehicleData.fuelType &&
+      vehicleData.vehicleType &&
+      vehicleData.seatingCapacity
+    ) {
       fetchData();
     }
   }, [vehicleData]);
@@ -60,11 +70,53 @@ const CarDetails = () => {
                 <h2 className="section__title">
                   {vehicleData.brand} - {vehicleData.model}
                 </h2>
-                <p className="section__description">
-                  {vehicleData.vehicleState}
-                </p>
+                <div className="about__section-item car__item-info d-flex align-items-center">
+                  <span className=" d-flex align-items-center gap-2">
+                    <i class="ri-car-line"></i>
+                    {vehicleData.model}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-building-line"></i>
+                    {vehicleData.companyName}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-map-pin-line"></i>
+                    {vehicleData.manufacturedCountry}
+                  </span>
+                </div>
+                <div className="about__section-item car__item-info d-flex align-items-center mt-3">
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-paint-fill"></i>
+                    {vehicleData.color}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i class="ri-settings-2-line"></i>
+                    {vehicleData.fuelType}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-calendar-line"></i>
+                    {vehicleData.manufacturedYear}
+                  </span>
+                </div>
+                <div className="about__section-item car__item-info d-flex align-items-center mt-3">
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-group-line"></i>
+                    {vehicleData.seatingCapacity}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-brush-line"></i>
+                    {vehicleData.style}
+                  </span>
+                  <span className=" d-flex align-items-center gap-2">
+                    <i className="ri-grid-line"></i>
+                    {vehicleData.vehicleType}
+                  </span>
+                </div>
 
-                <div className="grid grid-cols-3 align-items-center mt-3" style={{ columnGap: "4rem" }}>
+                <div
+                  className="grid grid-cols-3 align-items-center mt-3"
+                  style={{ columnGap: "4rem" }}
+                >
                   {/* Render vehicle details */}
                 </div>
 

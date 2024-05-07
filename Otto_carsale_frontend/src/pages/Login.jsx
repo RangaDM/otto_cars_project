@@ -83,6 +83,7 @@ const Login = () => {
                 required
               />
               <button type="button" onClick={handleSignIn}>Log in</button>
+              <p style={{ color:"white" , margin:"0"}}><a href="#">Do you forgot password?</a></p>
             </form>
           </div>
 
