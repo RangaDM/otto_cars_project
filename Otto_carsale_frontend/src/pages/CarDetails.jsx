@@ -4,6 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CarItem from "../components/UI/CarItem";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const CarDetails = () => {
   const { slug } = useParams();
@@ -11,13 +14,14 @@ const CarDetails = () => {
   const [relatedData, setRelatedData] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchData = async () => {
       try {
         const singleCarItem = await axios.get(
           `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(singleCarItem.data[0]);
-        console.log(singleCarItem.data[0]);
+        // console.log(singleCarItem.data[0]);
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +58,8 @@ const CarDetails = () => {
     }
   }, [vehicleData]);
 
-  const firstAlbumUrl = vehicleData.album?.[0]?.photoURL;
+  // const firstAlbumUrl = vehicleData.album?.[0]?.photoURL;
+  // console.log(firstAlbumUrl);
 
   return (
     <Helmet title={vehicleData.brand}>
@@ -62,7 +67,19 @@ const CarDetails = () => {
         <Container>
           <Row>
             <Col lg="6">
-              <img src={firstAlbumUrl} alt="" className="w-100" />
+              <Slider
+                dots={true}
+                infinite={true}
+                speed={500}
+                slidesToShow={1}
+                slidesToScroll={1}
+              >
+                {vehicleData.album?.map((item, index) => (
+                  <div key={index}>
+                    <img src={item.photoURL} alt="" className="w-100" />
+                  </div>
+                ))}
+              </Slider>
             </Col>
 
             <Col lg="6">

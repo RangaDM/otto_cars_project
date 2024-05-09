@@ -15,20 +15,20 @@ const UserProfile = () => {
     window.location.href = "/";
   };
 
-  // useEffect(() => {
-  //   const fetchOrders = async () => {
-  //     try {
-  //       const response = await fetch(`http://localhost:5000/api/v1/orders/retrievCustomerOrders/${userID}`);
-  //       const data = await response.json();
-  //       setOrders(data);
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/v1/orders/retrievCustomerOrders/${userID}`);
+        const data = await response.json();
+        setOrders(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  //   fetchOrders();
-  // }, [userID]);
+    fetchOrders();
+  }, [userID]);
 
   return (
     <Helmet title="User">

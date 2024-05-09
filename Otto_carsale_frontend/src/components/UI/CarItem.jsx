@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/car-item.css";
 
 const CarItem = (props) => {
-  const { album, model, brand, fuelType, manufacturedCountry, vehicleId } = props.item;
+  const { album, model, brand, fuelType, manufacturedCountry, _id } = props.item;
 
   const firstAlbumUrl = Array.isArray(album) && album.length > 0 ? album[0] : null;
 
@@ -38,7 +38,7 @@ const CarItem = (props) => {
           </button>
 
           <button className=" w-50 car__item-btn car__btn-details">
-            <Link to={`/vehicles/${vehicleId}`}>Details</Link>
+            <Link to={`/vehicles/${_id}`}>Details</Link>
           </button>
         </div>
       </div>

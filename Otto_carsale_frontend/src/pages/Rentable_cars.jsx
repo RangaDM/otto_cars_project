@@ -15,8 +15,9 @@ const RentListing = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/vehicles");
-      setRentVehicle(response);
+      const response = await axios.get("http://localhost:5000/api/v1/vehicles/retrieveAllVehicles");
+      setRentVehicle(response.data.van);
+      console.log(response.data.van);
       setLoading(false);
     } catch {
       setError("Failed to fetch data. Please try again later.");
