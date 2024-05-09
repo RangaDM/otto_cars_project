@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Button } from "reactstrap";
-import axios from "axios";
+import { Button, Form, FormGroup } from "reactstrap";
 import "../../styles/booking-form.css";
 
 const BookingForm = () => {
@@ -39,6 +38,12 @@ const BookingForm = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
+    const userID = localStorage.getItem("userID");
+    if (!userID) {
+      window.location.href = "/user";
+      return;
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -57,6 +62,7 @@ const BookingForm = () => {
       journeyDate,
       journeyTime,
       note,
+      userID: localStorage.getItem("userID"),
     });
 
     try {
