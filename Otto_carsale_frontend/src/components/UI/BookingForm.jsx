@@ -51,9 +51,9 @@ const BookingForm = () => {
     };
 
     const body = JSON.stringify({
-      firstName,
-      lastName,
-      email,
+      firstName:localStorage.getItem("firstName"),
+      lastName:localStorage.getItem("lastName"),
+      email:localStorage.getItem("email"),
       phoneNumber,
       fromAddress,
       toAddress,
@@ -80,48 +80,6 @@ const BookingForm = () => {
   return (
     <>
       <Form onSubmit={submitHandler}>
-        <FormGroup className="booking__form d-inline-block me-4 mb-4">
-          <input
-            type="text"
-            name="firstName"
-            value={firstName}
-            placeholder="First Name"
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-        <FormGroup className="booking__form d-inline-block ms-1 mb-4">
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            placeholder="Last Name"
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-
-        <FormGroup className="booking__form d-inline-block me-4 mb-4">
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-        <FormGroup className="booking__form d-inline-block ms-1 mb-4">
-          <input
-            type="number"
-            name="phoneNumber"
-            value={phoneNumber}
-            placeholder="Phone Number"
-            onChange={handleChange}
-            required
-          />
-        </FormGroup>
-
         <FormGroup className="booking__form d-inline-block me-4 mb-4">
           <input
             type="text"

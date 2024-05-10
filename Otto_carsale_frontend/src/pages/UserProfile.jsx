@@ -7,16 +7,29 @@ import { useEffect, useState } from "react";
 
 const UserProfile = () => {
   const [orders, setOrders] = useState([]);
+  const token = localStorage.getItem("token");
 
-  const logOut = () => {
-    localStorage.removeItem("userID");
-    window.location.href = "/";
+  const logOut = async () => {
+    try {
+      await fetch('http://localhost:5000/api/v1/user/customerlogout', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      localStorage.removeItem("userID");
+      localStorage.removeItem("token");
+      localStorage.removeItem("firstName");
+      localStorage.removeItem("lastName");
+      localStorage.removeItem("email");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     const fetchOrders = async () => {
       const userID = localStorage.getItem("userID");
-      const token = localStorage.getItem("token");
 
       try {
         const response = await fetch(

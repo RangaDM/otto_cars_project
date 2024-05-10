@@ -27,6 +27,10 @@ const Login = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userID", response.data.user._id);
+        localStorage.setItem("firstName", response.data.user.firstName);
+        localStorage.setItem("lastName", response.data.user.lastName);
+        localStorage.setItem("email", response.data.user.email);
+        console.log("User:", response.data.user);
         window.location.href = "/user-profile";
       }
     } catch (error) {
