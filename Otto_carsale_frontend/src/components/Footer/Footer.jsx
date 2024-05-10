@@ -41,13 +41,17 @@ const Footer = () => {
           <Col lg="4" md="4" sm="12">
             <div className="logo footer__logo">
               <h1>
-              <Link to="/home" className=" d-flex align-items-center gap-2">
-                    <img src={logo} alt="logo" className=" h-16" />
-                  </Link>
+                <Link to="/home" className=" d-flex align-items-center gap-2">
+                  <img src={logo} alt="logo" className=" h-16" />
+                </Link>
               </h1>
             </div>
             <p className="footer__logo-content">
-            Otto Car Sale is a leading online platform for buying, selling and Renting cars. We provide a wide range of vehicles and a seamless car buying experience. Browse our car listings, read our blog, and get in touch with us for any inquiries. Start your car shopping journey with Otto Car Sale today!
+              Otto Car Sale is a leading online platform for buying, selling and
+              Renting cars. We provide a wide range of vehicles and a seamless
+              car buying experience. Browse our car listings, read our blog, and
+              get in touch with us for any inquiries. Start your car shopping
+              journey with Otto Car Sale today!
             </p>
           </Col>
 
@@ -92,7 +96,8 @@ const Footer = () => {
           <Col lg="12">
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i class="ri-copyright-line"></i>Copyright {year}, Developed by RSSS. All rights reserved.
+                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
+                RSSS. All rights reserved.
               </p>
             </div>
           </Col>
