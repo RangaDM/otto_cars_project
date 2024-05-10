@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from "react";
-import "../styles/login.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import axios from "axios";
