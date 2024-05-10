@@ -19,12 +19,16 @@ import BikeListing from "../pages/BikeListing";
 import CabListing from "../pages/CabListing";
 
 const Routers = () => {
+  const userID = localStorage.getItem("userID");
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="/home" element={<Home />} />
       <Route path="/user" element={<Login />} />
-      <Route path="/user-profile" element={<UserProfile />} />
+      <Route
+        path="/user-profile"
+        element={userID ? <UserProfile /> : <Login />}
+      />
       <Route path="/about" element={<About />} />
       <Route path="/vehicles" element={<Categories />} />
       <Route path="/cars" element={<CarListing />} />

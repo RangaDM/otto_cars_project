@@ -55,7 +55,7 @@ const UserProfile = () => {
       <CommonSection title="My Orders" />
       <section>
         <div className="px-20 pb-3 flex items-center justify-between">
-          <h2 className="section__title">Welcome {orders[0]?.customerName}</h2>
+          <h2 className="section__title">Welcome {localStorage.getItem('firstName')}</h2>
           <button className="logout__btn" onClick={logOut}>
             Log Out
           </button>
