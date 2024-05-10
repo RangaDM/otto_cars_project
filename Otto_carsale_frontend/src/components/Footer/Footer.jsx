@@ -47,7 +47,7 @@ const Footer = () => {
               </h1>
             </div>
             <p className="footer__logo-content">
-            Otto Car Sale is a leading online platform for buying and selling cars. We provide a wide range of vehicles and a seamless car buying experience. Browse our car listings, read our blog, and get in touch with us for any inquiries. Start your car shopping journey with Otto Car Sale today!
+            Otto Car Sale is a leading online platform for buying, selling and Renting cars. We provide a wide range of vehicles and a seamless car buying experience. Browse our car listings, read our blog, and get in touch with us for any inquiries. Start your car shopping journey with Otto Car Sale today!
             </p>
           </Col>
 
