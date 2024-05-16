@@ -1,5 +1,5 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import "../styles/login.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import styles from "../styles/Login.module.css";
