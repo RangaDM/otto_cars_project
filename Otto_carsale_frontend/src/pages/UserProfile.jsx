@@ -11,7 +11,7 @@ const UserProfile = () => {
 
   const logOut = async () => {
     try {
-      await fetch('http://54.221.20.238:3001/api/v1/user/customerlogout', {
+      await fetch('http://100.27.232.65:3001/api/v1/user/customerlogout', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ const UserProfile = () => {
 
       try {
         const response = await fetch(
-          `http://54.221.20.238:3001/api/v1/orders/retrievCustomerOrders/${userID}`,
+          `http://100.27.232.65:3001/api/v1/orders/retrievCustomerOrders/${userID}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -21,7 +21,7 @@ const Home = () => {
     async function fetchData() {
       try {
         const vehicle = await axios.get(
-          "http://54.221.20.238:3001/api/v1/vehicles/retrieveAllVehicles"
+          "http://100.27.232.65:3001/api/v1/vehicles/retrieveAllVehicles"
         );
         setcarData(vehicle.data.car);
       } catch (e) {
