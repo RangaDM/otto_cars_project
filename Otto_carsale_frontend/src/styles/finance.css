@@ -42,6 +42,11 @@
     margin-top: 20px;
     font-weight: bold;
   }
+
+  .error {
+    color: red;
+    font-weight: bold;
+  }
   
   @media (max-width: 560px) {
     .input-row {

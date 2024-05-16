@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import { Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import Order from "../components/UI/Order";
 import "../styles/user-profile.css";
-import { useEffect, useState } from "react";
 
 const UserProfile = () => {
   const [orders, setOrders] = useState([]);
@@ -11,7 +11,7 @@ const UserProfile = () => {
 
   const logOut = async () => {
     try {
-      await fetch('http://localhost:5000/api/v1/user/customerlogout', {
+      await fetch('http://54.224.78.211:3001/api/v1/user/customerlogout', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ const UserProfile = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/orders/retrievCustomerOrders/${userID}`,
+          `http://54.224.78.211:3001/api/v1/orders/retrievCustomerOrders/${userID}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

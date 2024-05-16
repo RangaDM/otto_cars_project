@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from "react";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
-import axios from "axios";
 import styles from "../styles/Login.module.css";
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
   const handleLogin = useCallback(async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "http://54.224.78.211:3001/api/v1/user/login",
         form.login
       );
       if (response.status === 200) {
@@ -52,7 +52,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/user/customerregister",
+        "http://54.224.78.211:3001/api/v1/user/customerregister",
         form.register
       );
       console.log(response.data);

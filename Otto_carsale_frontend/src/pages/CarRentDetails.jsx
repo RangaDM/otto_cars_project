@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Row, Col } from "reactstrap";
-import Helmet from "../components/Helmet/Helmet";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
+import Helmet from "../components/Helmet/Helmet";
 import BookingForm from "../components/UI/BookingForm";
 
 const CarRentDetails = () => {
@@ -14,7 +14,7 @@ const CarRentDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
+          `http://54.224.78.211:3001/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(response.data[0]);
       } catch (error) {

@@ -1,18 +1,17 @@
 import React from "react";
 
-import HeroSlider from "../components/UI/HeroSlider";
 import Helmet from "../components/Helmet/Helmet";
+import HeroSlider from "../components/UI/HeroSlider";
 
-import { Container, Row, Col } from "reactstrap";
-import FindCarForm from "../components/UI/FindCarForm";
-import AboutSection from "../components/UI/AboutSection";
-import ServicesList from "../components/UI/ServicesList";
-import CarItem from "../components/UI/CarItem";
-import BecomeDriverSection from "../components/UI/BecomeDriverSection";
-import Testimonial from "../components/UI/Testimonial";
-import Mainsection from "../components/UI/Mainsection";
 import axios from "axios";
+import { Col, Container, Row } from "reactstrap";
+import AboutSection from "../components/UI/AboutSection";
+import BecomeDriverSection from "../components/UI/BecomeDriverSection";
+import CarItem from "../components/UI/CarItem";
 import FinanceCal from "../components/UI/FinanceCal";
+import Mainsection from "../components/UI/Mainsection";
+import ServicesList from "../components/UI/ServicesList";
+import Testimonial from "../components/UI/Testimonial";
 
 const Home = () => {
   const [carData, setcarData] = React.useState([]);
@@ -21,7 +20,7 @@ const Home = () => {
     async function fetchData() {
       try {
         const vehicle = await axios.get(
-          "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
+          "http://54.224.78.211:3001/api/v1/vehicles/retrieveAllVehicles"
         );
         setcarData(vehicle.data.car);
       } catch (e) {

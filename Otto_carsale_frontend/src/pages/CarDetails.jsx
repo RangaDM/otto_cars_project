@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Slider from "react-slick";
 import { Col, Container, Row } from "reactstrap";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import Helmet from "../components/Helmet/Helmet";
 import CarItem from "../components/UI/CarItem";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const CarDetails = () => {
   const { slug } = useParams();
@@ -18,7 +18,7 @@ const CarDetails = () => {
     const fetchData = async () => {
       try {
         const singleCarItem = await axios.get(
-          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
+          `http://54.224.78.211:3001/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(singleCarItem.data[0]);
         // console.log(singleCarItem.data[0]);
@@ -40,7 +40,7 @@ const CarDetails = () => {
         };
 
         const response = await axios.post(
-          "http://localhost:5000/api/v1/vehicles/similarVehicles",
+          "http://54.224.78.211:3001/api/v1/vehicles/similarVehicles",
           vehicleDataToSend
         );
         setRelatedData(response.data);

@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Container, Row, Col } from "reactstrap";
-import Helmet from "../components/Helmet/Helmet";
-import CommonSection from "../components/UI/CommonSection";
-import CarItem from "../components/UI/CarItem";
 import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
+import { Col, Container, Row } from "reactstrap";
+import Helmet from "../components/Helmet/Helmet";
+import CarItem from "../components/UI/CarItem";
+import CommonSection from "../components/UI/CommonSection";
 import Loading from "../components/UI/Loading";
 
 const CabListing = () => {
@@ -15,7 +15,7 @@ const CabListing = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
+        "http://54.224.78.211:3001/api/v1/vehicles/retrieveAllVehicles"
       );
       setCabData(response.data.cab);
       setLoading(false);
