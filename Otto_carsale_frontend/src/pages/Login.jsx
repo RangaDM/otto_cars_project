@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
-import "../styles/login.css";
+import axios from "axios";
+import React, { useCallback, useEffect, useState } from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import styles from "../styles/Login.module.css";
-import axios from "axios";
+import "../styles/login.css";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
@@ -30,7 +30,7 @@ const Login = () => {
   const handleLogin = useCallback(async () => {
     try {
       const response = await axios.post(
-        "http://54.224.78.211:3001/api/v1/user/login",
+        "http://3.93.45.76:3001/api/v1/user/login",
         form.login
       );
       if (response.status === 200) {
@@ -53,7 +53,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        "http://54.224.78.211:3001/api/v1/user/customerregister",
+        "http://3.93.45.76:3001/api/v1/user/customerregister",
         form.register
       );
       console.log(response.data);

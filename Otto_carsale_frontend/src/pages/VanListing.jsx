@@ -15,7 +15,7 @@ const VanListing = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://54.224.78.211:3001/api/v1/vehicles/retrieveAllVehicles"
+        "http://3.93.45.76:3001/api/v1/vehicles/retrieveAllVehicles"
       );
       setvanData(response.data.van);
       setLoading(false);
