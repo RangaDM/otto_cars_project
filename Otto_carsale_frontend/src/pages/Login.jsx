@@ -3,6 +3,7 @@ import "../styles/login.css";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import styles from "../styles/Login.module.css";
+import axios from "axios";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
