@@ -15,7 +15,7 @@ const CabListing = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://3.93.45.76:3001/api/v1/vehicles/retrieveAllVehicles"
+        "http://54.221.20.238:3001/api/v1/vehicles/retrieveAllVehicles"
       );
       setCabData(response.data.cab);
       setLoading(false);
