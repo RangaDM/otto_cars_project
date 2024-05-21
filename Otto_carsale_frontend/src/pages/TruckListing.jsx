@@ -15,7 +15,7 @@ const TruckListing = () => {
   const fetchData = useCallback(async () => {
     try {
       const response = await axios.get(
-        "http://100.27.232.65:3001/api/v1/vehicles/retrieveAllVehicles"
+        "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
       );
       settruckData(response.data.truck);
       setLoading(false);

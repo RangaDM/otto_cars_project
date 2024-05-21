@@ -18,7 +18,7 @@ const CarDetails = () => {
     const fetchData = async () => {
       try {
         const singleCarItem = await axios.get(
-          `http://100.27.232.65:3001/api/v1/vehicles/findOneVehicle/${slug}`
+          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(singleCarItem.data[0]);
         // console.log(singleCarItem.data[0]);
@@ -40,7 +40,7 @@ const CarDetails = () => {
         };
 
         const response = await axios.post(
-          "http://100.27.232.65:3001/api/v1/vehicles/similarVehicles",
+          "http://localhost:5000/api/v1/vehicles/similarVehicles",
           vehicleDataToSend
         );
         setRelatedData(response.data);

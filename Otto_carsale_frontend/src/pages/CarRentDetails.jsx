@@ -14,7 +14,7 @@ const CarRentDetails = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://100.27.232.65:3001/api/v1/vehicles/findOneVehicle/${slug}`
+          `http://localhost:5000/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(response.data[0]);
       } catch (error) {

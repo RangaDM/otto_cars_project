@@ -30,7 +30,7 @@ const Login = () => {
   const handleLogin = useCallback(async () => {
     try {
       const response = await axios.post(
-        "http://100.27.232.65:3001/api/v1/user/login",
+        "http://localhost:5000/api/v1/user/login",
         form.login
       );
       if (response.status === 200) {
@@ -53,7 +53,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        "http://100.27.232.65:3001/api/v1/user/customerregister",
+        "http://localhost:5000/api/v1/user/customerregister",
         form.register
       );
       console.log(response.data);
