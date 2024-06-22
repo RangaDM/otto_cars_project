@@ -18,6 +18,7 @@ const CarListing = () => {
         "http://localhost:5000/api/v1/vehicles/retrieveAllVehicles"
       );
       setCarData(response.data.car);
+      // console.log(response.data.car[0].album[0].photoURL);
       setLoading(false);
     } catch (error) {
       setError("Failed to fetch data. Please try again later.");
