@@ -19,26 +19,29 @@ const Login = () => {
     },
   });
 
-
-  const handleFormChange = useCallback((e, formType) => {
-    setForm({
-      ...form,
-      [formType]: { ...form[formType], [e.target.name]: e.target.value },
-    });
-  }, [form]);
+  const handleFormChange = useCallback(
+    (e, formType) => {
+      setForm({
+        ...form,
+        [formType]: { ...form[formType], [e.target.name]: e.target.value },
+      });
+    },
+    [form]
+  );
 
   const handleLogin = useCallback(async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/user/login",
+        "http://localhost:5001/auth/signin",
         form.login
       );
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userID", response.data.user._id);
+        localStorage.setItem("userID", response.data.user.userId);
         localStorage.setItem("firstName", response.data.user.firstName);
         localStorage.setItem("lastName", response.data.user.lastName);
         localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("role", response.data.user.role+response.data.token);
         window.location.href = "/user-profile";
       }
     } catch (error) {

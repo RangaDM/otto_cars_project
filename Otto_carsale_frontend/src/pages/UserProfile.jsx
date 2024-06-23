@@ -11,7 +11,7 @@ const UserProfile = () => {
 
   const logOut = async () => {
     try {
-      await fetch('http://localhost:5000/api/v1/user/customerlogout', {
+      await fetch("http://localhost:5000/api/v1/user/customerlogout", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,10 +21,15 @@ const UserProfile = () => {
       localStorage.removeItem("firstName");
       localStorage.removeItem("lastName");
       localStorage.removeItem("email");
+      localStorage.removeItem("role");
       window.location.href = "/";
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  const goDashboard = () => {
+    window.location.href = "https://github.com/Otto-Car-Sale/Otto-Frontend";
   };
 
   useEffect(() => {
@@ -42,34 +47,55 @@ const UserProfile = () => {
         );
         const data = await response.json();
         setOrders(data);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchOrders();
-  }, []);
+  }, [token]);
 
   return (
     <Helmet title="User">
-      <CommonSection title="My Orders" />
+      <CommonSection title="Profile" />
       <section>
-        <div className="px-20 pb-3 flex items-center justify-between">
-          <h2 className="section__title">Welcome {localStorage.getItem('firstName')}</h2>
-          <button className="logout__btn" onClick={logOut}>
-            Log Out
-          </button>
+        <div className="section__header">
+          <h2 className="section__title">
+            Welcome {localStorage.getItem("firstName")}
+          </h2>
+          <div className="flex justify-center items-center">
+            {localStorage.getItem("role") ===
+            `ADMIN${localStorage.getItem("token")}` ? (
+              <button className="dashboard__btn" onClick={goDashboard}>
+                Dashboard
+              </button>
+            ) : null}
+            <button className="logout__btn" onClick={logOut}>
+              Log Out
+            </button>
+          </div>
         </div>
 
         <Container>
           <Row>
-            {orders.length === 0 ? (
+            {localStorage.getItem("role") ===
+            `ADMIN${localStorage.getItem("token")}` ? (
               <div className="flex items-center justify-center">
-                <h2 className="section__title">No orders found</h2>
+                <h4 className="mzg">
+                  You are logged in as admin. Visit admin dashboard for more
+                  features.
+                </h4>
               </div>
-            ) : (
-              orders.map((order) => <Order key={order._id} order={order} />)
-            )}
+            ) : null
+            // orders.length === 0 ? (
+            //   <div className="flex items-center justify-center">
+            //     <h2 className="section__title">No orders found</h2>
+            //   </div>
+            // ) : (
+            //   orders?.map((order) => <Order key={order._id} order={order} />)
+            // )
+            }
           </Row>
         </Container>
       </section>

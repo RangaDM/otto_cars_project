@@ -29,6 +29,10 @@ const navLinks = [
     path: "/contact",
     display: "Contact",
   },
+  {
+    path: "/user-profile",
+    display: "Profile",
+  },
 ];
 
 const Header = () => {
@@ -36,7 +40,29 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
   const userID = localStorage.getItem("userID");
+  const token = localStorage.getItem("token");
   const linkPath = userID ? "/user-profile" : "/user";
+  const dashboardPath = "#";
+
+  const logOut = async () => {
+    try {
+      // await fetch("http://localhost:5001/api/v1/user/customerlogout", {
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
+      localStorage.removeItem("userID");
+      localStorage.removeItem("token");
+      localStorage.removeItem("firstName");
+      localStorage.removeItem("lastName");
+      localStorage.removeItem("email");
+      localStorage.removeItem("role");
+      window.location.reload();
+      window.alert("Logged out successfully!");
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <header className="header">
@@ -62,6 +88,23 @@ const Header = () => {
                 <Link to={linkPath} className="d-flex align-items-center gap-1">
                   <i className="ri-user-line"></i> Profile
                 </Link>
+                {localStorage.getItem("role") ===
+                `ADMIN${localStorage.getItem("token")}` ? (
+                  <Link
+                    to={dashboardPath}
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="ri-dashboard-line"></i> Dashboard
+                  </Link>
+                ) : null}
+                {localStorage.getItem("userID") ? (
+                  <button
+                    onClick={logOut}
+                    className="d-flex align-items-center gap-1"
+                  >
+                    <i className="ri-logout-circle-line"></i> Log Out
+                  </button>
+                ) : null}
               </div>
             </Col>
           </Row>
