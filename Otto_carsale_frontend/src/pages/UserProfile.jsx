@@ -10,22 +10,13 @@ const UserProfile = () => {
   const token = localStorage.getItem("token");
 
   const logOut = async () => {
-    try {
-      await fetch("http://localhost:5000/api/v1/user/customerlogout", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      localStorage.removeItem("userID");
-      localStorage.removeItem("token");
-      localStorage.removeItem("firstName");
-      localStorage.removeItem("lastName");
-      localStorage.removeItem("email");
-      localStorage.removeItem("role");
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("email");
+    localStorage.removeItem("role");
+    window.location.href = "/";
   };
 
   const goDashboard = () => {
@@ -36,21 +27,21 @@ const UserProfile = () => {
     const fetchOrders = async () => {
       const userID = localStorage.getItem("userID");
 
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/v1/orders/retrievCustomerOrders/${userID}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const data = await response.json();
-        setOrders(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      // try {
+      //   const response = await fetch(
+      //     `http://localhost:5000/api/v1/orders/retrievCustomerOrders/${userID}`,
+      //     {
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //     }
+      //   );
+      //   const data = await response.json();
+      //   setOrders(data);
+      //   console.log(data);
+      // } catch (error) {
+      //   console.error("Error fetching data:", error);
+      // }
     };
 
     fetchOrders();
@@ -79,22 +70,23 @@ const UserProfile = () => {
 
         <Container>
           <Row>
-            {localStorage.getItem("role") ===
-            `ADMIN${localStorage.getItem("token")}` ? (
-              <div className="flex items-center justify-center">
-                <h4 className="mzg">
-                  You are logged in as admin. Visit admin dashboard for more
-                  features.
-                </h4>
-              </div>
-            ) : null
-            // orders.length === 0 ? (
-            //   <div className="flex items-center justify-center">
-            //     <h2 className="section__title">No orders found</h2>
-            //   </div>
-            // ) : (
-            //   orders?.map((order) => <Order key={order._id} order={order} />)
-            // )
+            {
+              localStorage.getItem("role") ===
+              `ADMIN${localStorage.getItem("token")}` ? (
+                <div className="flex items-center justify-center">
+                  <h4 className="mzg">
+                    You are logged in as admin. Visit admin dashboard for more
+                    features.
+                  </h4>
+                </div>
+              ) : null
+              // orders.length === 0 ? (
+              //   <div className="flex items-center justify-center">
+              //     <h2 className="section__title">No orders found</h2>
+              //   </div>
+              // ) : (
+              //   orders?.map((order) => <Order key={order._id} order={order} />)
+              // )
             }
           </Row>
         </Container>

@@ -7,7 +7,9 @@ import "../styles/login.css";
 
 const Login = () => {
   const [activeTab, setActiveTab] = useState("login");
-  const [Error, setError] = useState("");
+  const [error, setError] = useState("");
+  const [filePath, setFilePath] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
   const [form, setForm] = useState({
     login: { email: "", password: "" },
     register: {
@@ -19,15 +21,13 @@ const Login = () => {
     },
   });
 
-  const handleFormChange = useCallback(
-    (e, formType) => {
-      setForm({
-        ...form,
-        [formType]: { ...form[formType], [e.target.name]: e.target.value },
-      });
-    },
-    [form]
-  );
+  const handleFormChange = useCallback((e, formType) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [formType]: { ...prevForm[formType], [name]: value },
+    }));
+  }, []);
 
   const handleLogin = useCallback(async () => {
     try {
@@ -36,50 +36,86 @@ const Login = () => {
         form.login
       );
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("userID", response.data.user.userId);
-        localStorage.setItem("firstName", response.data.user.firstName);
-        localStorage.setItem("lastName", response.data.user.lastName);
-        localStorage.setItem("email", response.data.user.email);
-        localStorage.setItem("role", response.data.user.role+response.data.token);
+        const { token, user } = response.data;
+        const { userId, firstName, lastName, email, role } = user;
+        localStorage.setItem("token", token);
+        localStorage.setItem("userID", userId);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("lastName", lastName);
+        localStorage.setItem("email", email);
+        localStorage.setItem("role", role + token);
         window.location.href = "/user-profile";
       }
-    } catch (error) {
+    } catch {
       setError("Invalid email or password");
     }
   }, [form.login]);
 
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      console.error("No file selected.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+    setIsUploading(true);
+
+    try {
+      const response = await fetch("http://localhost:4000/api/v1/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log("Upload successful", result.filepath);
+      setFilePath(result.filepath);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   const handleSignUp = useCallback(async () => {
-    if (Object.values(form.register).some((value) => value === "")) {
+    const { firstName, lastName, email, password } = form.register;
+    if ([firstName, lastName, email, password].some((value) => value === "")) {
       setError("Please fill all the fields");
       return;
     }
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/v1/user/customerregister",
-        form.register
-      );
-      console.log(response.data);
-      // localStorage.setItem("token", response.data.token);
-      // localStorage.setItem("userID", response.data.user._id);
-      // localStorage.setItem("firstName", response.data.user.firstName);
-      // localStorage.setItem("lastName", response.data.user.lastName);
-      // localStorage.setItem("email", response.data.user.email);
-      window.location.href = "/user-profile";
-    } catch (error) {
-      setError("Somthing went wrong, please try again later");
+
+    if (!filePath) {
+      setError("Please select an image file");
+      return;
     }
-  }, [form.register]);
+
+    try {
+      const response = await axios.post("http://localhost:5001/auth/signup", {
+        ...form.register,
+        profilePic: filePath,
+      });
+      console.log(response.data);
+      if (response.data.statusCode === 200) {
+        window.location.reload();
+      } else {
+        setError("Please try again");
+      }
+    } catch {
+      setError("Something went wrong, please try again later");
+    }
+  }, [form.register, filePath]);
 
   useEffect(() => {
-    if (Error) {
-      const timer = setTimeout(() => {
-        setError("");
-      }, 3000);
-
+    if (error) {
+      const timer = setTimeout(() => setError(""), 3000);
       return () => clearTimeout(timer);
     }
-  }, [Error]);
+  }, [error]);
 
   return (
     <Helmet title="Login">
@@ -105,97 +141,25 @@ const Login = () => {
                 Register
               </div>
             </div>
-            <div className={`${styles.errorText} ${Error ? styles.error : ""}`}>
-              {Error}
-            </div>
+            {error && (
+              <div className={`${styles.errorText} ${styles.error}`}>
+                {error}
+              </div>
+            )}
             {activeTab === "login" ? (
-              <form className={styles.form}>
-                <input
-                  className={styles.input}
-                  type="email"
-                  name="email"
-                  value={form.login.email}
-                  onChange={(e) => handleFormChange(e, "login")}
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="password"
-                  name="password"
-                  value={form.login.password}
-                  onChange={(e) => handleFormChange(e, "login")}
-                  placeholder="Password"
-                  required
-                />
-                <a href="#" className="text-xs text-blue-600 py-2">
-                  Forgot Password?
-                </a>
-                <div className="flex items-center justify-center py-2">
-                  <button
-                    className={styles.button}
-                    type="button"
-                    onClick={handleLogin}
-                  >
-                    Login
-                  </button>
-                </div>
-              </form>
+              <LoginForm
+                form={form.login}
+                onChange={(e) => handleFormChange(e, "login")}
+                onSubmit={handleLogin}
+              />
             ) : (
-              <form className={styles.form}>
-                <input
-                  className={styles.input}
-                  type="file"
-                  name="profile"
-                  onChange={(e) => handleFormChange(e, "register")}
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="firstName"
-                  value={form.register.firstName}
-                  onChange={(e) => handleFormChange(e, "register")}
-                  placeholder="First Name"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="lastName"
-                  value={form.register.lastName}
-                  onChange={(e) => handleFormChange(e, "register")}
-                  placeholder="Last Name"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="email"
-                  name="email"
-                  value={form.register.email}
-                  onChange={(e) => handleFormChange(e, "register")}
-                  placeholder="Email"
-                  required
-                />
-                <input
-                  className={styles.input}
-                  type="password"
-                  name="password"
-                  value={form.register.password}
-                  onChange={(e) => handleFormChange(e, "register")}
-                  placeholder="Password"
-                  required
-                />
-                <div className="flex items-center justify-center py-2">
-                  <button
-                    className={styles.button}
-                    type="button"
-                    onClick={handleSignUp}
-                  >
-                    Register
-                  </button>
-                </div>
-              </form>
+              <RegisterForm
+                form={form.register}
+                onChange={(e) => handleFormChange(e, "register")}
+                onFileChange={handleFileChange}
+                onSubmit={handleSignUp}
+                isUploading={isUploading}
+              />
             )}
           </div>
         </div>
@@ -203,5 +167,108 @@ const Login = () => {
     </Helmet>
   );
 };
+
+const LoginForm = ({ form, onChange, onSubmit }) => (
+  <form className={styles.form}>
+    <input
+      className={styles.input}
+      type="email"
+      name="email"
+      value={form.email}
+      onChange={onChange}
+      placeholder="Email"
+      required
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      title="Please enter a valid email address."
+    />
+    <input
+      className={styles.input}
+      type="password"
+      name="password"
+      value={form.password}
+      onChange={onChange}
+      placeholder="Password"
+      required
+    />
+    <a href="#" className="text-xs text-blue-600 py-2">
+      Forgot Password?
+    </a>
+    <div className="flex items-center justify-center py-2">
+      <button className={styles.button} type="button" onClick={onSubmit}>
+        Login
+      </button>
+    </div>
+  </form>
+);
+
+const RegisterForm = ({
+  form,
+  onChange,
+  onFileChange,
+  onSubmit,
+  isUploading,
+}) => (
+  <form className={styles.form}>
+    <input
+      className={styles.input}
+      type="file"
+      name="image"
+      onChange={onFileChange}
+      required
+    />
+    <input
+      className={styles.input}
+      type="text"
+      name="firstName"
+      value={form.firstName}
+      onChange={onChange}
+      placeholder="First Name"
+      required
+      disabled={isUploading}
+    />
+    <input
+      className={styles.input}
+      type="text"
+      name="lastName"
+      value={form.lastName}
+      onChange={onChange}
+      placeholder="Last Name"
+      required
+      disabled={isUploading}
+    />
+    <input
+      className={styles.input}
+      type="email"
+      name="email"
+      value={form.email}
+      onChange={onChange}
+      placeholder="Email"
+      required
+      disabled={isUploading}
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+      title="Please enter a valid email address."
+    />
+    <input
+      className={styles.input}
+      type="password"
+      name="password"
+      value={form.password}
+      onChange={onChange}
+      placeholder="Password"
+      required
+      disabled={isUploading}
+    />
+    <div className="flex items-center justify-center py-2">
+      <button
+        className={styles.button}
+        type="button"
+        onClick={onSubmit}
+        disabled={isUploading}
+      >
+        Register
+      </button>
+    </div>
+  </form>
+);
 
 export default Login;

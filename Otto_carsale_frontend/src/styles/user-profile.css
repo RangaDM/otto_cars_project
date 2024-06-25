@@ -58,4 +58,8 @@
     justify-content: left;
     align-items: start;
   }
+
+  .mzg {
+    font-size: 1.2rem;
+  }
 }
