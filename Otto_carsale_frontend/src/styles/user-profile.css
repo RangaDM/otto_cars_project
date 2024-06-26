@@ -1,6 +1,20 @@
 .logout__btn {
   padding: 7px 10px;
-  background: #b2071d;
+  background: #8388a4;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+}
+
+.del_btn{
+  padding: 7px 10px;
+  background: #ed5e68;
   font-weight: 600;
   color: #fff;
   border: none;
@@ -15,7 +29,6 @@
 .dashboard__btn {
   padding: 7px 10px;
   margin-right: 5px;
-  background: #f9a826;
   color: #000000;
   font-weight: 600;
   border: none;
@@ -25,21 +38,43 @@
   justify-content: center;
   align-items: center;
   height: 40px;
+  background: repeating-conic-gradient(from var(--a),#ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff2770 50%);
+  animation: animate 4s linear infinite;
+}
+
+.dashboard__btn:hover {
+  background: #f9a826;
+  color: #000000;
 }
 
 .section__header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
   margin-left: 50px;
   margin-right: 50px;
+  gap: 30px;
+}
+
+.profile__pic{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+
 }
 
 .topics__title {
   color: #021f61;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+.details_sec{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .mzg{

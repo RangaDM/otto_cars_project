@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup } from "reactstrap";
 import "../../styles/booking-form.css";
 
-const BookingForm = () => {
+const BookingForm = (props) => {
+  const {slug} = props;
+  console.log(slug);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phoneNumber: "",
     fromAddress: "",
-    toAddress: "",
-    passengers: "",
-    luggage: "",
-    journeyDate: "",
+    destination: "",
+    noOfPassengers: "",
+    noOfLuggages: "",
+    pickupDate: "",
     journeyTime: "",
-    note: "",
+    description: "",
   });
 
   const {
@@ -23,12 +26,12 @@ const BookingForm = () => {
     email,
     phoneNumber,
     fromAddress,
-    toAddress,
-    passengers,
-    luggage,
-    journeyDate,
+    destination,
+    noOfPassengers,
+    noOfLuggages,
+    pickupDate,
     journeyTime,
-    note,
+    description,
   } = formData;
 
   const handleChange = (event) => {
@@ -56,19 +59,21 @@ const BookingForm = () => {
       email:localStorage.getItem("email"),
       phoneNumber,
       fromAddress,
-      toAddress,
-      passengers,
-      luggage,
-      journeyDate,
+      destination,
+      noOfPassengers,
+      noOfLuggages,
+      pickupDate,
       journeyTime,
-      note,
+      description,
+      orderStatus: "Pending",
+      paymentStatus: "Unpaid",
       userID: localStorage.getItem("userID"),
     });
 
     try {
       // const response = await axios.post("/api/orders", body, config);
       // console.log(response.data);
-      console.log(body);
+      console.log("Booking details :" , body);
 
       // alert("Order placed successfully");
     } catch (error) {
@@ -93,8 +98,8 @@ const BookingForm = () => {
         <FormGroup className="booking__form d-inline-block ms-1 mb-4">
           <input
             type="text"
-            name="toAddress"
-            value={toAddress}
+            name="destination"
+            value={destination}
             placeholder="To Address"
             onChange={handleChange}
             required
@@ -103,9 +108,9 @@ const BookingForm = () => {
 
         <FormGroup className="booking__form d-inline-block me-4 mb-4">
           <select
-            name="passengers"
+            name="noOfPassengers"
             id=""
-            value={passengers}
+            value={noOfPassengers}
             onChange={handleChange}
             required
           >
@@ -119,9 +124,9 @@ const BookingForm = () => {
         </FormGroup>
         <FormGroup className="booking__form d-inline-block ms-1 mb-4">
           <select
-            name="luggage"
+            name="noOfLuggages"
             id=""
-            value={luggage}
+            value={noOfLuggages}
             onChange={handleChange}
             required
           >
@@ -137,8 +142,8 @@ const BookingForm = () => {
         <FormGroup className="booking__form d-inline-block me-4 mb-4">
           <input
             type="date"
-            name="journeyDate"
-            value={journeyDate}
+            name="pickupDate"
+            value={pickupDate}
             placeholder="Journey Date"
             onChange={handleChange}
             required
@@ -159,8 +164,8 @@ const BookingForm = () => {
         <FormGroup>
           <textarea
             rows={5}
-            name="note"
-            value={note}
+            name="description"
+            value={description}
             type="textarea"
             className="textarea"
             placeholder="Write"

@@ -17,6 +17,8 @@ const Login = () => {
       firstName: "",
       lastName: "",
       email: "",
+      phoneNO: "",
+      address: "",
       password: "",
     },
   });
@@ -35,15 +37,12 @@ const Login = () => {
         "http://localhost:5001/auth/signin",
         form.login
       );
-      if (response.status === 200) {
-        const { token, user } = response.data;
-        const { userId, firstName, lastName, email, role } = user;
-        localStorage.setItem("token", token);
-        localStorage.setItem("userID", userId);
-        localStorage.setItem("firstName", firstName);
-        localStorage.setItem("lastName", lastName);
-        localStorage.setItem("email", email);
-        localStorage.setItem("role", role + token);
+      // console.log(response.data);
+      if (response.data.statusCode === 200) {
+        console.log("success");
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userID", response.data.userId);
+        localStorage.setItem("role", response.data.role + response.data.token);
         window.location.href = "/user-profile";
       }
     } catch {
@@ -83,8 +82,8 @@ const Login = () => {
   };
 
   const handleSignUp = useCallback(async () => {
-    const { firstName, lastName, email, password } = form.register;
-    if ([firstName, lastName, email, password].some((value) => value === "")) {
+    const { firstName, lastName, email, password, phoneNO, address } = form.register;
+    if ([firstName, lastName, email, password, phoneNO, address].some((value) => value === "")) {
       setError("Please fill all the fields");
       return;
     }
@@ -101,7 +100,11 @@ const Login = () => {
       });
       console.log(response.data);
       if (response.data.statusCode === 200) {
-        window.location.reload();
+        console.log("success");
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userID", response.data.userId);
+        localStorage.setItem("role", response.data.role + response.data.token);
+        window.location.href = "/user-profile";
       } else {
         setError("Please try again");
       }
@@ -247,6 +250,26 @@ const RegisterForm = ({
       disabled={isUploading}
       pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
       title="Please enter a valid email address."
+    />
+    <input
+      className={styles.input}
+      type="text"
+      name="phoneNO"
+      value={form.phoneNO}
+      onChange={onChange}
+      placeholder="Phone Number"
+      required
+      disabled={isUploading}
+    />
+    <input
+      className={styles.input}
+      type="text"
+      name="address"
+      value={form.address}
+      onChange={onChange}
+      placeholder="Address"
+      required
+      disabled={isUploading}
     />
     <input
       className={styles.input}

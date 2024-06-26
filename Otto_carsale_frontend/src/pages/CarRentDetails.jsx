@@ -75,7 +75,7 @@ const CarRentDetails = () => {
             <Col lg="12" className="mt-3 lg:mx-10">
               <div className="booking-info mt-5">
                 <h5 className="mb-4 fw-bold ">Booking Information</h5>
-                <BookingForm />
+                <BookingForm slug={slug} />
               </div>
             </Col>
           </Row>
