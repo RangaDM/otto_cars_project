@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 import "../../styles/car-item.css";
 
 const CarRentItem = (props) => {
-  const { album, model, brand, fuelType, manufacturedCountry, vehicleId, _id } =
-    props.item;
+  const {
+    albumUrls,
+    model,
+    brand,
+    fuelType,
+    manufacturedCountry,
+    vehicleId,
+  } = props.item;
 
   return (
     <Col lg="4" md="4" sm="6" className="mb-5">
       <div className="car__item">
         <div className="car__img">
-          <img src={album[0].photoURL} alt="" className="w-100" />
+          <img src={albumUrls[0]} alt="" className="w-100" />
         </div>
 
         <div className="car__item-content mt-4">
@@ -36,7 +42,7 @@ const CarRentItem = (props) => {
           </div>
           <div className="flex items-center justify-center">
             <button className=" w-50 car__item-btn car__btn-rent">
-              <Link to={`/rent/${_id}`}>Rent</Link>
+              <Link to={`/rent/${vehicleId}`}>Rent</Link>
             </button>
             <button className=" w-50 car__item-btn car__btn-details">
               <Link to={`/contact`}>Contact</Link>
